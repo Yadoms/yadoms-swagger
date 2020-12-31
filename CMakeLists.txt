@@ -10,7 +10,14 @@ add_library(${project_name}-lib
         src/AppComponent.hpp
         src/controller/MyController.cpp
         src/controller/MyController.hpp
+        src/controller/AcquisitionController.hpp
+
+        src/dto/acquisition/AcquisitionDataDTO.hpp
+        src/dto/acquisition/AcquisitionKeywordLastDataDTO.hpp
+        src/dto/acquisition/AcquisitionLastValueDTO.hpp
+        src/dto/acquisition/KeywordsDTO.hpp
         src/dto/DTOs.hpp
+
 )
 
 ## link libs

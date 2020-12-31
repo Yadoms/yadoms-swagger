@@ -18,6 +18,7 @@ class MyApiTestClient : public oatpp::web::client::ApiClient {
 
   API_CALL("GET", "/", getRoot)
 
+  API_CALL("PUT", "/acquisition/keyword/lastdata", getKeywordListLastData)
   // TODO - add more client API calls here
 
 };

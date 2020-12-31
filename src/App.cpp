@@ -3,6 +3,7 @@
 #include "oatpp/network/Server.hpp"
 #include <iostream>
 #include "oatpp-swagger/Controller.hpp"
+#include "controller/AcquisitionController.hpp"
 
 void run()
 {
@@ -16,6 +17,9 @@ void run()
    auto myController = std::make_shared<MyController>();
    myController->addEndpointsToRouter(router);
 
+   auto acquisitionController = std::make_shared<CAcquisitionController>();
+   acquisitionController->addEndpointsToRouter(router);
+
    /* Get connection handler component */
    OATPP_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, connectionHandler);
 
@@ -23,7 +27,9 @@ void run()
    OATPP_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, connectionProvider);
 
    auto docEndpoints = oatpp::swagger::Controller::Endpoints::createShared();
-   docEndpoints->pushBackAll(myController->getEndpoints());
+   //docEndpoints->pushBackAll(myController->getEndpoints());
+   docEndpoints->pushBackAll(acquisitionController->getEndpoints());
+
    auto swaggerController = oatpp::swagger::Controller::createShared(docEndpoints);
    swaggerController->addEndpointsToRouter(router);
 
@@ -31,7 +37,7 @@ void run()
    oatpp::network::Server server(connectionProvider, connectionHandler);
 
    /* Priny info about server port */
-   OATPP_LOGI("MyApp", "Server running on port %s", connectionProvider->getProperty("port").getData());
+   OATPP_LOGI("Yadoms ", "Server running on port %s", connectionProvider->getProperty("port").getData());
 
    /* Run server */
    server.run();

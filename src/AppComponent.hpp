@@ -22,7 +22,7 @@ public:
    OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, serverConnectionProvider)([]
       {
          return oatpp::network::tcp::server::ConnectionProvider::createShared({
-            "0.0.0.0/rest", 8000, oatpp::network::Address::IP_4
+            "0.0.0.0", 8000, oatpp::network::Address::IP_4
          });
       }());
 
@@ -68,7 +68,7 @@ public:
             .setContactUrl("http://yadoms.com/forum/")
             .setLicenseName("GNU General Public License v3.0")
             .setLicenseUrl("https://github.com/Yadoms/yadoms-swagger-spot/blob/master/LICENSE")
-            .addServer("http://localhost:8000", "server on localhost");
+            .addServer("http://localhost:8080/rest", "server on localhost");
          return builder.build();
       }());
    /**
