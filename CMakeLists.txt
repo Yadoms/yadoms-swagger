@@ -12,10 +12,13 @@ add_library(${project_name}-lib
         src/controller/MyController.hpp
         src/controller/AcquisitionController.hpp
 
-        src/dto/acquisition/AcquisitionDataDTO.hpp
-        src/dto/acquisition/AcquisitionKeywordLastDataDTO.hpp
-        src/dto/acquisition/AcquisitionLastValueDTO.hpp
-        src/dto/acquisition/KeywordsDTO.hpp
+        src/dto/acquisition/KeywordsLastDataResponseDTO.hpp
+        src/dto/acquisition/KeywordsLastDataBodyDTO.hpp
+        src/dto/acquisition/LastValueDTO.hpp
+
+        src/dto/acquisition/InfoDTO.hpp
+        src/dto/acquisition/KeywordsListInfoBodyDTO.hpp
+        src/dto/acquisition/KeywordsListInfoResponseDTO.hpp
         src/dto/DTOs.hpp
 
 )

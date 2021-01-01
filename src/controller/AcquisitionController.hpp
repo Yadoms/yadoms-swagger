@@ -4,11 +4,13 @@
 #include "oatpp/web/server/api/ApiController.hpp"
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/macro/component.hpp"
-#include "dto/DTOs.hpp"
-#include "dto/acquisition/AcquisitionKeywordLastDataDTO.hpp"
-#include "dto/acquisition/KeywordsDTO.hpp"
-
+#include "dto/acquisition/KeywordsLastDataResponseDTO.hpp"
+#include "dto/acquisition/KeywordsLastDataBodyDTO.hpp"
+#include "dto/acquisition/KeywordsListInfoBodyDTO.hpp"
+#include "dto/acquisition/KeywordsListInfoResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
+
+
 
 class CAcquisitionController : public oatpp::web::server::api::ApiController
 {
@@ -23,36 +25,32 @@ public:
    {
       info->addTag("Keyword List Last data");
       info->description = "Get the last acquisition for a list of keywords passed as a body";
-
-      info->addResponse<Object<AcquisitionKeywordLastData>>(
+      info->addResponse<Object<KeywordsLastDataResponse>>(
          Status::CODE_200,
          "application/json"
       );
    }
 
    ENDPOINT("PUT", "/acquisition/keyword/lastdata", getKeywordListLastData,
-            BODY_DTO(Object<Keywords>, keywords))
+            BODY_DTO(Object<KeywordsLastDataBody>, keywords))
    {
-      return createResponse(Status::CODE_200, "ok");
+      return createResponse(Status::CODE_200, "OK");
    }
 
    ENDPOINT_INFO(getKeywordListInfo)
    {
       info->addTag("Keyword List info");
       info->description = "Get the last acquisition for a list of keywords passed as a parameter";
-      info->addResponse<Object<MyDto>>(
+      info->addResponse<Object<KeywordListInfoResponse>>(
          Status::CODE_200,
          "application/json"
       );
    }
 
    ENDPOINT("PUT", "/acquisition/keyword/info", getKeywordListInfo,
-         BODY_DTO(Object<Keywords>, keywords))
+         BODY_DTO(Object<KeywordsListInfoBody>, keywords))
    {
-      auto dto = MyDto::createShared();
-      dto->statusCode = 200;
-      dto->message = "Hello World!";
-      return createDtoResponse(Status::CODE_200, dto);
+      return createResponse(Status::CODE_200, "OK");
    }
 };
 
