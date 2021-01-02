@@ -40,7 +40,7 @@ public:
    ENDPOINT_INFO(getKeywordListInfo)
    {
       info->addTag("Keyword List info");
-      info->description = "Get the last acquisition for a list of keywords passed as a parameter";
+      info->description = "Get the last acquisition info for a list of keywords and list of info passed as a body. If the List of info is empty, the response will be the the list of keywords with empty values ";
       info->addResponse<Object<KeywordListInfoResponse>>(
          Status::CODE_200,
          "application/json"
@@ -52,6 +52,7 @@ public:
    {
       return createResponse(Status::CODE_200, "OK");
    }
+
 };
 
 #include OATPP_CODEGEN_END(ApiController)

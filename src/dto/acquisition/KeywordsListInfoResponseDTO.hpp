@@ -4,13 +4,13 @@
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/Types.hpp"
 #include "dto/acquisition/InfoDTO.hpp"
+#include "CommonsDataDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(DTO)
 
-class KeywordListInfoResponse : public oatpp::DTO
+
+class KeywordListInfoResponse : public CommonsData
 {
-   DTO_INIT(KeywordListInfoResponse, DTO);
-   DTO_FIELD(Boolean, result);
-   DTO_FIELD(String, message);
+   DTO_INIT(KeywordListInfoResponse, CommonsData);
    DTO_FIELD(Fields<Object<Info>>, data);
 };
 
