@@ -1,5 +1,5 @@
-﻿#ifndef KEYWORDLASTDATARESPONSEDTO_hpp
-#define KEYWORDLASTDATARESPONSEDTO_hpp
+﻿#ifndef KEYWORDSLASTDATARESPONSEDTO_hpp
+#define KEYWORDSLASTDATARESPONSEDTO_hpp
 
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/Types.hpp"
@@ -15,4 +15,4 @@ class KeywordsLastDataResponse : public CommonsData
 
 #include OATPP_CODEGEN_END(DTO)
 
-#endif /* KEYWORDLASTDATARESPONSEDTO_hpp */
+#endif /* KEYWORDSLASTDATARESPONSEDTO_hpp */

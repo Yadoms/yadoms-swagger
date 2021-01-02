@@ -22,6 +22,7 @@ add_library(${project_name}-lib
         src/dto/acquisition/CommonsDataDTO.hpp
         src/dto/acquisition/KeywordInfoBodyDTO.hpp
         src/dto/acquisition/KeywordInfoResponseDTO.hpp
+        src/dto/acquisition/KeywordLastDataResponseDTO.hpp
         src/dto/DTOs.hpp
 
 )

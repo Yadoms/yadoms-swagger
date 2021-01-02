@@ -10,9 +10,9 @@
 #include "dto/acquisition/KeywordsListInfoResponseDTO.hpp"
 #include "dto/acquisition/KeywordInfoBodyDTO.hpp"
 #include "dto/acquisition/KeywordInfoResponseDTO.hpp"
+#include "dto/acquisition/KeywordLastDataResponseDTO.hpp"
+
 #include OATPP_CODEGEN_BEGIN(ApiController)
-
-
 
 class CAcquisitionController : public oatpp::web::server::api::ApiController
 {
@@ -35,6 +35,22 @@ public:
 
    ENDPOINT("PUT", "/acquisition/keyword/lastdata", getKeywordListLastData,
             BODY_DTO(Object<KeywordsLastDataBody>, keywords))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getKeywordLastData)
+   {
+      info->addTag("Keyword Last data");
+      info->description = "Get the last acquisition for a keyword passed as a path";
+      info->addResponse<Object<KeywordLastDataResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/acquisition/keyword/{keywordId}/lastdata", getKeywordLastData,
+      PATH(Int32, keywordId))
    {
       return createResponse(Status::CODE_200, "OK");
    }
@@ -71,6 +87,8 @@ public:
    {
       return createResponse(Status::CODE_200, "OK");
    }
+
+  
 };
 
 #include OATPP_CODEGEN_END(ApiController)
