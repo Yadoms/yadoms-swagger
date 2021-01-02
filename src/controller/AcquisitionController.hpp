@@ -8,6 +8,8 @@
 #include "dto/acquisition/KeywordsLastDataBodyDTO.hpp"
 #include "dto/acquisition/KeywordsListInfoBodyDTO.hpp"
 #include "dto/acquisition/KeywordsListInfoResponseDTO.hpp"
+#include "dto/acquisition/KeywordInfoBodyDTO.hpp"
+#include "dto/acquisition/KeywordInfoResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 
@@ -41,7 +43,7 @@ public:
    {
       info->addTag("Keyword List info");
       info->description = "Get the last acquisition info for a list of keywords and list of info passed as a body. If the List of info is empty, the response will be the the list of keywords with empty values ";
-      info->addResponse<Object<KeywordListInfoResponse>>(
+      info->addResponse<Object<KeywordsListInfoResponse>>(
          Status::CODE_200,
          "application/json"
       );
@@ -53,6 +55,22 @@ public:
       return createResponse(Status::CODE_200, "OK");
    }
 
+   ENDPOINT_INFO(getKeywordInfo)
+   {
+      info->addTag("Keyword info");
+      info->description = "Get the last acquisition info (passed as a body) for a keyword passed as a path";
+      info->addResponse<Object<KeywordInfoResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("PUT", "/acquisition/keyword/{keywordId}/info", getKeywordInfo,
+      PATH(Int32, keywordId), 
+      BODY_DTO(Object<KeywordInfoBody>, info))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 
 #include OATPP_CODEGEN_END(ApiController)

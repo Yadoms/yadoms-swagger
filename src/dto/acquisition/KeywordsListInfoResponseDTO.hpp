@@ -8,9 +8,9 @@
 #include OATPP_CODEGEN_BEGIN(DTO)
 
 
-class KeywordListInfoResponse : public CommonsData
+class KeywordsListInfoResponse : public CommonsData
 {
-   DTO_INIT(KeywordListInfoResponse, CommonsData);
+   DTO_INIT(KeywordsListInfoResponse, CommonsData);
    DTO_FIELD(Fields<Object<Info>>, data);
 };
 
