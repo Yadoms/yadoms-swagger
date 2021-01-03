@@ -170,7 +170,7 @@ public:
    ENDPOINT_INFO(getKeywordDataByHour)
    {
       info->addTag("Acquisition");
-      info->summary = "keyword data between two dates";
+      info->summary = "keyword data by hour";
       info->description = "Get all acquisitions (avg, min, max per day) for the given keywordId";
       info->addResponse<Object<KeywordDataByHourResponse>>(
          Status::CODE_200,
@@ -180,6 +180,50 @@ public:
 
    ENDPOINT("Get", "/acquisition/keyword/{keywordId}/hour", getKeywordDataByHour,
             PATH(Int32, keywordId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getKeywordDataByHourFromDate)
+   {
+      info->addTag("Acquisition");
+      info->summary = "keyword data by hour from date";
+      info->description = "Get all acquisitions (avg, min, max per day) since keywordDateFrom";
+      info->pathParams["keywordDateFrom"].description =
+         "Date format : YYYYMMDDThhmmss where T is delimeter between date and time (Example : 20201023T190000)";
+      info->addResponse<Object<KeywordDataByHourResponse>>(
+         Status::CODE_200,
+         "application/json"
+      );
+   }
+
+   ENDPOINT("Get", "/acquisition/keyword/{keywordId}/hour/{keywordDateFrom}", getKeywordDataByHourFromDate,
+            PATH(Int32, keywordId),
+            PATH(String, keywordDateFrom))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getKeywordDataByHourFromToDate)
+   {
+      info->addTag("Acquisition");
+      info->summary = "keyword data by hour between two dates";
+      info->description = "Get all acquisitions (avg, min, max per day) from keywordDateFrom to keywordDateTo";
+      info->pathParams["keywordDateFrom"].description =
+         "Date format : YYYYMMDDThhmmss where T is delimeter between date and time (Example : 20201023T190000)";
+      info->pathParams["keywordDateTo"].description =
+         "Date format : keywordDateTo where T is delimeter between date and time (Example : 20210102T170000)";
+      info->addResponse<Object<KeywordDataByHourResponse>>(
+         Status::CODE_200,
+         "application/json"
+      );
+   }
+
+   ENDPOINT("Get", "/acquisition/keyword/{keywordId}/hour/{keywordDateFrom}/{keywordDateTo}",
+            getKeywordDataByHourFromToDate,
+            PATH(Int32, keywordId),
+            PATH(String, keywordDateFrom),
+            PATH(String, keywordDateTo))
    {
       return createResponse(Status::CODE_200, "OK");
    }
