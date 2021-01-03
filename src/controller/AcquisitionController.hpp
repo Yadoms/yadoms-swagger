@@ -11,6 +11,7 @@
 #include "dto/acquisition/KeywordInfoBodyDTO.hpp"
 #include "dto/acquisition/KeywordInfoResponseDTO.hpp"
 #include "dto/acquisition/KeywordLastDataResponseDTO.hpp"
+#include "dto/acquisition/AllKeywordDataResponseDTO.hpp"
 
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
@@ -109,21 +110,16 @@ public:
    {
       info->addTag("Acquisition");
       info->summary = "All keyword Data";
-      info->description =
-         "Get the last acquisition info for a list of keywords and list of info passed as a body. If the List of info is empty, the response will be the the list of keywords with empty values ";
-      auto keywords = KeywordsListInfoBody::createShared();
-      keywords->keywords = oatpp::Vector<oatpp::String>({ "212", "215" });
-      info->body.example = keywords;
+      info->description = "Get all keyword data";
 
-      info->addConsumes<Object<KeywordsListInfoBody>>(
-         "application/json"
-         );
-      info->addResponse<Object<KeywordsListInfoResponse>>(
+      info->addResponse<Object<AllKeywordDataResponse>>(
          Status::CODE_200,
          "application/json"
-         );
+      );
    }
-   ENDPOINT("Get", "/acquisition/keyword/{keywordId}", getAllKeywordData)
+
+   ENDPOINT("Get", "/acquisition/keyword/{keywordId}", getAllKeywordData,
+            PATH(Int32, keywordId))
    {
       return createResponse(Status::CODE_200, "OK");
    }
