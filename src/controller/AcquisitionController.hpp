@@ -12,7 +12,7 @@
 #include "dto/acquisition/KeywordInfoResponseDTO.hpp"
 #include "dto/acquisition/KeywordLastDataResponseDTO.hpp"
 #include "dto/acquisition/AllKeywordDataResponseDTO.hpp"
-
+#include "dto/acquisition/KeywordDataByHourResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CAcquisitionController : public oatpp::web::server::api::ApiController
@@ -129,16 +129,17 @@ public:
       info->addTag("Acquisition");
       info->summary = "keyword data from date";
       info->description = "Get keyword data from date";
-      info->pathParams["keywordDateFrom"].description = "Date format : YYYYMMDDThhmmss where T is delimeter between date and time (Example : 20201230T102659)";
+      info->pathParams["keywordDateFrom"].description =
+         "Date format : YYYYMMDDThhmmss where T is delimeter between date and time (Example : 20201230T102659)";
       info->addResponse<Object<AllKeywordDataResponse>>(
          Status::CODE_200,
          "application/json"
-         );
+      );
    }
 
    ENDPOINT("Get", "/acquisition/keyword/{keywordId}/{keywordDateFrom}", getKeywordDataFromDate,
-      PATH(Int32, keywordId),
-      PATH(String, keywordDateFrom))
+            PATH(Int32, keywordId),
+            PATH(String, keywordDateFrom))
    {
       return createResponse(Status::CODE_200, "OK");
    }
@@ -148,18 +149,37 @@ public:
       info->addTag("Acquisition");
       info->summary = "keyword data between two dates";
       info->description = "Get keyword data between two dates";
-      info->pathParams["keywordDateFrom"].description = "Date format : YYYYMMDDThhmmss where T is delimeter between date and time (Example : 20201230T102659)";
-      info->pathParams["keywordDateTo"].description = "Date format : YYYYMMDDThhmmss where T is delimeter between date and time (Example : 20201230T102618)";
+      info->pathParams["keywordDateFrom"].description =
+         "Date format : YYYYMMDDThhmmss where T is delimeter between date and time (Example : 20201230T102659)";
+      info->pathParams["keywordDateTo"].description =
+         "Date format : YYYYMMDDThhmmss where T is delimeter between date and time (Example : 20201230T102618)";
       info->addResponse<Object<AllKeywordDataResponse>>(
          Status::CODE_200,
          "application/json"
-         );
+      );
    }
 
    ENDPOINT("Get", "/acquisition/keyword/{keywordId}/{keywordDateFrom}/{keywordDateTo}", getKeywordDataFromToDate,
-      PATH(Int32, keywordId),
-      PATH(String, keywordDateFrom),
-      PATH(String, keywordDateTo))
+            PATH(Int32, keywordId),
+            PATH(String, keywordDateFrom),
+            PATH(String, keywordDateTo))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getKeywordDataByHour)
+   {
+      info->addTag("Acquisition");
+      info->summary = "keyword data between two dates";
+      info->description = "Get all acquisitions (avg, min, max per day) for the given keywordId";
+      info->addResponse<Object<KeywordDataByHourResponse>>(
+         Status::CODE_200,
+         "application/json"
+      );
+   }
+
+   ENDPOINT("Get", "/acquisition/keyword/{keywordId}/hour", getKeywordDataByHour,
+            PATH(Int32, keywordId))
    {
       return createResponse(Status::CODE_200, "OK");
    }
