@@ -27,14 +27,20 @@ public:
    {
       info->addTag("Keyword List Last data");
       info->description = "Get the last acquisition for a list of keywords passed as a body";
+      auto keywords = KeywordsLastDataBody::createShared();
+      keywords->keywords = oatpp::Vector<oatpp::String>({"212", "215"});
+      info->body.example = keywords;
+
+      info->addConsumes<Object<KeywordsLastDataBody>>(
+         "application/json"
+      );
       info->addResponse<Object<KeywordsLastDataResponse>>(
          Status::CODE_200,
          "application/json"
       );
    }
 
-   ENDPOINT("PUT", "/acquisition/keyword/lastdata", getKeywordListLastData,
-            BODY_DTO(Object<KeywordsLastDataBody>, keywords))
+   ENDPOINT("PUT", "/acquisition/keyword/lastdata", getKeywordListLastData)
    {
       return createResponse(Status::CODE_200, "OK");
    }
@@ -46,11 +52,11 @@ public:
       info->addResponse<Object<KeywordLastDataResponse>>(
          Status::CODE_200,
          "application/json"
-         );
+      );
    }
 
    ENDPOINT("Get", "/acquisition/keyword/{keywordId}/lastdata", getKeywordLastData,
-      PATH(Int32, keywordId))
+            PATH(Int32, keywordId))
    {
       return createResponse(Status::CODE_200, "OK");
    }
@@ -58,15 +64,22 @@ public:
    ENDPOINT_INFO(getKeywordListInfo)
    {
       info->addTag("Keyword List info");
-      info->description = "Get the last acquisition info for a list of keywords and list of info passed as a body. If the List of info is empty, the response will be the the list of keywords with empty values ";
+      info->description =
+         "Get the last acquisition info for a list of keywords and list of info passed as a body. If the List of info is empty, the response will be the the list of keywords with empty values ";
+      auto keywords = KeywordsListInfoBody::createShared();
+      keywords->keywords = oatpp::Vector<oatpp::String>({"212", "215"});
+      info->body.example = keywords;
+
+      info->addConsumes<Object<KeywordsListInfoBody>>(
+         "application/json"
+      );
       info->addResponse<Object<KeywordsListInfoResponse>>(
          Status::CODE_200,
          "application/json"
       );
    }
 
-   ENDPOINT("PUT", "/acquisition/keyword/info", getKeywordListInfo,
-         BODY_DTO(Object<KeywordsListInfoBody>, keywords))
+   ENDPOINT("PUT", "/acquisition/keyword/info", getKeywordListInfo)
    {
       return createResponse(Status::CODE_200, "OK");
    }
@@ -78,17 +91,15 @@ public:
       info->addResponse<Object<KeywordInfoResponse>>(
          Status::CODE_200,
          "application/json"
-         );
+      );
    }
 
    ENDPOINT("PUT", "/acquisition/keyword/{keywordId}/info", getKeywordInfo,
-      PATH(Int32, keywordId), 
-      BODY_DTO(Object<KeywordInfoBody>, info))
+            PATH(Int32, keywordId),
+            BODY_DTO(Object<KeywordInfoBody>, info))
    {
       return createResponse(Status::CODE_200, "OK");
    }
-
-  
 };
 
 #include OATPP_CODEGEN_END(ApiController)
