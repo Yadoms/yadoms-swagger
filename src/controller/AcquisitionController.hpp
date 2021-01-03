@@ -227,6 +227,189 @@ public:
    {
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(getKeywordDataByDay)
+   {
+      info->addTag("Acquisition");
+      info->summary = "keyword data by day";
+      info->description = "Get all acquisitions (avg, min, max per day) for the given keywordId";
+      info->addResponse<Object<KeywordDataByHourResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/acquisition/keyword/{keywordId}/day", getKeywordDataByDay,
+      PATH(Int32, keywordId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getKeywordDataByDayFromDate)
+   {
+      info->addTag("Acquisition");
+      info->summary = "keyword data by day from date";
+      info->description = "Get all acquisitions (avg, min, max per day) since keywordDateFrom";
+      info->pathParams["keywordDateFrom"].description =
+         "Date format : YYYYMMDDThhmmss where T is delimeter between date and time (Example : 20201010T000000)";
+      info->addResponse<Object<KeywordDataByHourResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/acquisition/keyword/{keywordId}/day/{keywordDateFrom}", getKeywordDataByDayFromDate,
+      PATH(Int32, keywordId),
+      PATH(String, keywordDateFrom))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getKeywordDataByDayFromToDate)
+   {
+      info->addTag("Acquisition");
+      info->summary = "keyword data by day between two dates";
+      info->description = "Get all acquisitions (avg, min, max per day) from keywordDateFrom to keywordDateTo";
+      info->pathParams["keywordDateFrom"].description =
+         "Date format : YYYYMMDDThhmmss where T is delimeter between date and time (Example : 20201010T000000)";
+      info->pathParams["keywordDateTo"].description =
+         "Date format : keywordDateTo where T is delimeter between date and time (Example : 20201023T000000)";
+      info->addResponse<Object<KeywordDataByHourResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/acquisition/keyword/{keywordId}/day/{keywordDateFrom}/{keywordDateTo}",
+      getKeywordDataByDayFromToDate,
+      PATH(Int32, keywordId),
+      PATH(String, keywordDateFrom),
+      PATH(String, keywordDateTo))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getKeywordDataByMonth)
+   {
+      info->addTag("Acquisition");
+      info->summary = "keyword data by Month";
+      info->description = "Get all acquisitions (avg, min, max per day) for the given keywordId";
+      info->addResponse<Object<KeywordDataByHourResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/acquisition/keyword/{keywordId}/month", getKeywordDataByMonth,
+      PATH(Int32, keywordId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getKeywordDataByMonthFromDate)
+   {
+      info->addTag("Acquisition");
+      info->summary = "keyword data by month from date";
+      info->description = "Get all acquisitions (avg, min, max per day) since keywordDateFrom";
+      info->pathParams["keywordDateFrom"].description =
+         "Date format : YYYYMMDDThhmmss where T is delimeter between date and time (Example : 20201001T000000)";
+      info->addResponse<Object<KeywordDataByHourResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/acquisition/keyword/{keywordId}/month/{keywordDateFrom}", getKeywordDataByMonthFromDate,
+      PATH(Int32, keywordId),
+      PATH(String, keywordDateFrom))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getKeywordDataByMonthFromToDate)
+   {
+      info->addTag("Acquisition");
+      info->summary = "keyword data by month between two dates";
+      info->description = "Get all acquisitions (avg, min, max per day) from keywordDateFrom to keywordDateTo";
+      info->pathParams["keywordDateFrom"].description =
+         "Date format : YYYYMMDDThhmmss where T is delimeter between date and time (Example : 20201001T000000)";
+      info->pathParams["keywordDateTo"].description =
+         "Date format : keywordDateTo where T is delimeter between date and time (Example : 20201101T000000)";
+      info->addResponse<Object<KeywordDataByHourResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/acquisition/keyword/{keywordId}/month/{keywordDateFrom}/{keywordDateTo}",
+      getKeywordDataByMonthFromToDate,
+      PATH(Int32, keywordId),
+      PATH(String, keywordDateFrom),
+      PATH(String, keywordDateTo))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getKeywordDataByYear)
+   {
+      info->addTag("Acquisition");
+      info->summary = "keyword data by year";
+      info->description = "Get all acquisitions (avg, min, max per day) for the given keywordId";
+      info->addResponse<Object<KeywordDataByHourResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/acquisition/keyword/{keywordId}/year", getKeywordDataByYear,
+      PATH(Int32, keywordId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getKeywordDataByYearFromDate)
+   {
+      info->addTag("Acquisition");
+      info->summary = "keyword data by year from date";
+      info->description = "Get all acquisitions (avg, min, max per day) since keywordDateFrom";
+      info->pathParams["keywordDateFrom"].description =
+         "Date format : YYYYMMDDThhmmss where T is delimeter between date and time (Example : 20200101T000000)";
+      info->addResponse<Object<KeywordDataByHourResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/acquisition/keyword/{keywordId}/year/{keywordDateFrom}", getKeywordDataByYearFromDate,
+      PATH(Int32, keywordId),
+      PATH(String, keywordDateFrom))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getKeywordDataByYearFromToDate)
+   {
+      info->addTag("Acquisition");
+      info->summary = "keyword data by year between two dates";
+      info->description = "Get all acquisitions (avg, min, max per day) from keywordDateFrom to keywordDateTo";
+      info->pathParams["keywordDateFrom"].description =
+         "Date format : YYYYMMDDThhmmss where T is delimeter between date and time (Example : 20200101T000000)";
+      info->pathParams["keywordDateTo"].description =
+         "Date format : keywordDateTo where T is delimeter between date and time (Example : 20210101T000000)";
+      info->addResponse<Object<KeywordDataByHourResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/acquisition/keyword/{keywordId}/year/{keywordDateFrom}/{keywordDateTo}",
+      getKeywordDataByYearFromToDate,
+      PATH(Int32, keywordId),
+      PATH(String, keywordDateFrom),
+      PATH(String, keywordDateTo))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 
 #include OATPP_CODEGEN_END(ApiController)
