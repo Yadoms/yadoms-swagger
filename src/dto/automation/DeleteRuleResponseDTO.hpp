@@ -9,7 +9,7 @@
 class DeleteRuleResponse : public CommonsData
 {
    DTO_INIT(DeleteRuleResponse, CommonsData);
-   DTO_FIELD(Fields<String>, data) = oatpp::data::mapping::type::PairList<String, String>({ });
+   DTO_FIELD(Fields<String>, data) = {};
 };
 
 #include OATPP_CODEGEN_END(DTO)
