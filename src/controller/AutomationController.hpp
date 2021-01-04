@@ -4,7 +4,8 @@
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/macro/component.hpp"
 #include "dto/automation/AllInterpretersResponseDTO.hpp"
-
+#include "dto/automation/AllRulesResponseDTO.hpp"
+#include "dto/automation/RuleCodeTemplateResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CAutomationController : public oatpp::web::server::api::ApiController
@@ -32,6 +33,39 @@ public:
       return createResponse(Status::CODE_200, "OK");
    }
 
+   ENDPOINT_INFO(getAllRules)
+   {
+      info->addTag("Automation");
+      info->summary = "All Rules";
+      info->description = "Get All Rules";
+      info->addResponse<Object<AllRulesResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/automation/rule", getAllRules)
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getRuleCodeTemplate)
+   {
+      info->addTag("Automation");
+      info->summary = "Rule Code Template";
+      info->description = "Get rule code template";
+      info->pathParams["interpreterName"].description = "Interpreter name (Example : yPython3)";
+      info->addResponse<Object<RuleCodeTemplateResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/automation/rule/{interpreterName}/codeTemplate", getRuleCodeTemplate,
+            PATH(String, interpreterName))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 #include OATPP_CODEGEN_END(ApiController)
 #endif /* CAcquisitionController_hpp */
