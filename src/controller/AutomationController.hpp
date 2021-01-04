@@ -6,6 +6,9 @@
 #include "dto/automation/AllInterpretersResponseDTO.hpp"
 #include "dto/automation/AllRulesResponseDTO.hpp"
 #include "dto/automation/RuleCodeTemplateResponseDTO.hpp"
+#include "dto/automation/RuleCodeTemplateBodyDTO.hpp"
+#include "dto/automation/CreateRuleResponseDTO.hpp"
+#include "dto/automation/DeleteRuleResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CAutomationController : public oatpp::web::server::api::ApiController
@@ -54,7 +57,7 @@ public:
       info->addTag("Automation");
       info->summary = "Rule Code Template";
       info->description = "Get rule code template";
-      info->pathParams["interpreterName"].description = "Interpreter name (Example : yPython3)";
+      info->pathParams["interpreterName"].description = "Interpreter name (Example : yPython3, yPython2 and code)";
       info->addResponse<Object<RuleCodeTemplateResponse>>(
          Status::CODE_200,
          "application/json"
@@ -63,6 +66,40 @@ public:
 
    ENDPOINT("Get", "/automation/rule/{interpreterName}/codeTemplate", getRuleCodeTemplate,
             PATH(String, interpreterName))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(createRule)
+   {
+      info->addTag("Automation");
+      info->summary = "Create Rule";
+      info->description = "Create Rule";
+      info->addResponse<Object<CreateRuleResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("POST", "/automation/rule", createRule,
+      BODY_DTO(Object<RuleCodeTemplateBody>, interpreterName))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(deleteRule)
+   {
+      info->addTag("Automation");
+      info->summary = "Delete Rule";
+      info->description = "Delete Rule";
+      info->addResponse<Object<DeleteRuleResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("DELETE", "/automation/rule/{ruleId}", deleteRule,
+      PATH(String, ruleId))
    {
       return createResponse(Status::CODE_200, "OK");
    }
