@@ -4,6 +4,7 @@
 #include <iostream>
 #include "oatpp-swagger/Controller.hpp"
 #include "controller/AcquisitionController.hpp"
+#include "controller/AutomationController.hpp"
 
 void run()
 {
@@ -20,6 +21,9 @@ void run()
    auto acquisitionController = std::make_shared<CAcquisitionController>();
    acquisitionController->addEndpointsToRouter(router);
 
+   auto automationController = std::make_shared<CAutomationController>();
+   automationController->addEndpointsToRouter(router);
+
    /* Get connection handler component */
    OATPP_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, connectionHandler);
 
@@ -27,8 +31,8 @@ void run()
    OATPP_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, connectionProvider);
 
    auto docEndpoints = oatpp::swagger::Controller::Endpoints::createShared();
-   //docEndpoints->pushBackAll(myController->getEndpoints());
    docEndpoints->pushBackAll(acquisitionController->getEndpoints());
+   docEndpoints->pushBackAll(automationController->getEndpoints());
 
    auto swaggerController = oatpp::swagger::Controller::createShared(docEndpoints);
    swaggerController->addEndpointsToRouter(router);

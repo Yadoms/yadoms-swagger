@@ -11,7 +11,9 @@ add_library(${project_name}-lib
         src/controller/MyController.cpp
         src/controller/MyController.hpp
         src/controller/AcquisitionController.hpp
+        src/controller/AutomationController.hpp
 
+        src/dto/CommonsDataDTO.hpp
         src/dto/acquisition/KeywordsLastDataResponseDTO.hpp
         src/dto/acquisition/KeywordsLastDataBodyDTO.hpp
         src/dto/acquisition/LastValueDTO.hpp
@@ -19,7 +21,7 @@ add_library(${project_name}-lib
         src/dto/acquisition/InfoDTO.hpp
         src/dto/acquisition/KeywordsListInfoBodyDTO.hpp
         src/dto/acquisition/KeywordsListInfoResponseDTO.hpp
-        src/dto/acquisition/CommonsDataDTO.hpp
+
         src/dto/acquisition/KeywordInfoBodyDTO.hpp
         src/dto/acquisition/KeywordInfoResponseDTO.hpp
         src/dto/acquisition/KeywordLastDataResponseDTO.hpp
@@ -29,6 +31,9 @@ add_library(${project_name}-lib
         src/dto/acquisition/KeywordDataByDateResponseDTO.hpp
         src/dto/acquisition/KeywordDataByDateDTO.hpp
         src/dto/acquisition/HourDataKeyDTO.hpp
+
+        src/dto/automation/AllInterpretersResponseDTO.hpp
+        src/dto/automation/InterpretersDTO.hpp
         src/dto/DTOs.hpp
 
 )

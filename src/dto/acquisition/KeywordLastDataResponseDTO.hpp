@@ -4,7 +4,7 @@
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/Types.hpp"
 #include "dto/acquisition/LastValueDTO.hpp"
-#include "CommonsDataDTO.hpp"
+#include "../dto/CommonsDataDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(DTO)
 
 class KeywordLastDataResponse : public CommonsData
