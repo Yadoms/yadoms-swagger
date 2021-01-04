@@ -6,7 +6,7 @@
 #include "dto/automation/AllInterpretersResponseDTO.hpp"
 #include "dto/automation/AllRulesResponseDTO.hpp"
 #include "dto/automation/RuleCodeTemplateResponseDTO.hpp"
-#include "dto/automation/RuleCodeTemplateBodyDTO.hpp"
+#include "dto/automation/CreateRuleBodyDTO.hpp"
 #include "dto/automation/CreateRuleResponseDTO.hpp"
 #include "dto/automation/DeleteRuleResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
@@ -82,7 +82,7 @@ public:
    }
 
    ENDPOINT("POST", "/automation/rule", createRule,
-      BODY_DTO(Object<RuleCodeTemplateBody>, interpreterName))
+      BODY_DTO(Object<CreateRuleBody>, interpreterName))
    {
       return createResponse(Status::CODE_200, "OK");
    }

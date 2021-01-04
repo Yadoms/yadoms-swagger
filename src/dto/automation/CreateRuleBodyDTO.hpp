@@ -1,8 +1,9 @@
-﻿#ifndef RuleCodeTemplateBodyDTO_hpp
-#define RuleCodeTemplateBodyDTO_hpp
+﻿#ifndef CreateRuleBodyDTO_hpp
+#define CreateRuleBodyDTO_hpp
 
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/Types.hpp"
+
 #include OATPP_CODEGEN_BEGIN(DTO)
 
 ENUM(InterpreterType, v_int32,
@@ -15,12 +16,12 @@ ENUM(EditorType, v_int32,
    VALUE(BLOCKLY, 2, "blockly")
 );
 
-class RuleCodeTemplateBody : public oatpp::DTO
+class CreateRuleBody : public oatpp::DTO
 {
-   DTO_INIT(RuleCodeTemplateBody, DTO);
+   DTO_INIT(CreateRuleBody, DTO);
    DTO_FIELD(String, name);
    DTO_FIELD(String, description);
-   DTO_FIELD(Enum<InterpreterType>, interpreter);
+   DTO_FIELD(Enum<InterpreterType>::AsString, interpreter);
    DTO_FIELD(Enum<EditorType>, editor);
    DTO_FIELD(String, model);
    DTO_FIELD(String, content);
@@ -32,7 +33,7 @@ class RuleCodeTemplateBody : public oatpp::DTO
 
 #include OATPP_CODEGEN_END(DTO)
 
-#endif /* RuleCodeTemplateBodyDTO_hpp */
+#endif /* CreateRuleBodyDTO_hpp */
 
 
 
