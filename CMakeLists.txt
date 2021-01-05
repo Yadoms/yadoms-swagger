@@ -56,6 +56,8 @@ add_library(${project_name}-lib
         src/dto/configuration/LocationDTO.hpp
         src/dto/configuration/BasicAuthenticationDTO.hpp
         src/dto/configuration/SaveServerConfigurationBody.hpp
+        src/dto/configuration/ExternalSectionTypeDTO.hpp
+        src/dto/configuration/ExternalConfigurationBodyDTO.hpp
         src/dto/DTOs.hpp
 
 )

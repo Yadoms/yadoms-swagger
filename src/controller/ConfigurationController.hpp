@@ -6,6 +6,8 @@
 #include "dto/configuration/ServerConfigurationResponseDTO.hpp"
 #include "dto/configuration/SaveServerConfigurationBody.hpp"
 #include "dto/SimpleResponseDTO.hpp"
+#include "dto/configuration/ExternalSectionTypeDTO.hpp"
+#include "dto/configuration/ExternalConfigurationBodyDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CConfigurationController : public oatpp::web::server::api::ApiController
@@ -76,6 +78,40 @@ public:
          );
    }
    ENDPOINT("Get", "/configuration/databaseVersion", getDatabaseVersion)
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getExternalConfiguration)
+   {
+      info->addTag("Configuration");
+      info->summary = "Get External Configuration";
+      info->description = "Get External Configuration";
+      info->addResponse<Object<SimpleResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("Get", "/configuration/external/{externalSectionName}", getExternalConfiguration,
+      PATH(Enum<ExternalSectionType>, externalSectionName))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(saveExternalConfiguration)
+   {
+      info->addTag("Configuration");
+      info->summary = "Save External Configuration";
+      info->description = "Save External Configuration";
+      info->addConsumes<Object<ExternalConfigurationBody>>(
+         "application/json"
+         );
+      info->addResponse<Object<SimpleResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("PUT", "/configuration/external/{externalSectionName}", saveExternalConfiguration)
    {
       return createResponse(Status::CODE_200, "OK");
    }
