@@ -31,7 +31,7 @@ public:
       info->description = "Get the last acquisition for a list of keywords passed as a body";
       auto keywords = KeywordsLastDataBody::createShared();
       keywords->keywords = oatpp::Vector<oatpp::String>({"212", "215"});
-      info->body.example = keywords;
+      info->body.addExample("keywords", keywords);
 
       info->addConsumes<Object<KeywordsLastDataBody>>(
          "application/json"
@@ -72,7 +72,7 @@ public:
          "Get the last acquisition info for a list of keywords and list of info passed as a body. If the List of info is empty, the response will be the the list of keywords with empty values ";
       auto keywords = KeywordsListInfoBody::createShared();
       keywords->keywords = oatpp::Vector<oatpp::String>({"212", "215"});
-      info->body.example = keywords;
+      info->body.addExample("keywords", keywords);
 
       info->addConsumes<Object<KeywordsListInfoBody>>(
          "application/json"
