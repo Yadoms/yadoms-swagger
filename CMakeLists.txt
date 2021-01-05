@@ -16,6 +16,7 @@ add_library(${project_name}-lib
 
         src/dto/CommonsDataDTO.hpp
         src/dto/EmptyResponseDTO.hpp
+        src/dto/SimpleResponseDTO.hpp
         src/dto/acquisition/KeywordsLastDataResponseDTO.hpp
         src/dto/acquisition/KeywordsLastDataBodyDTO.hpp
         src/dto/acquisition/LastValueDTO.hpp

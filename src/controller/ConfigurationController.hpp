@@ -5,6 +5,7 @@
 #include "oatpp/core/macro/component.hpp"
 #include "dto/configuration/ServerConfigurationResponseDTO.hpp"
 #include "dto/configuration/SaveServerConfigurationBody.hpp"
+#include "dto/SimpleResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CConfigurationController : public oatpp::web::server::api::ApiController
@@ -60,6 +61,21 @@ public:
          );
    }
    ENDPOINT("PUT", "/configuration/server", saveServerConfiguration)
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getDatabaseVersion)
+   {
+      info->addTag("Configuration");
+      info->summary = "Get Database Version";
+      info->description = "Get Database Version";
+      info->addResponse<Object<SimpleResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("Get", "/configuration/databaseVersion", getDatabaseVersion)
    {
       return createResponse(Status::CODE_200, "OK");
    }
