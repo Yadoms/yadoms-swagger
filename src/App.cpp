@@ -6,6 +6,7 @@
 #include "controller/AcquisitionController.hpp"
 #include "controller/AutomationController.hpp"
 #include "controller/ConfigurationController.hpp"
+#include "controller/DeviceController.hpp"
 
 void run()
 {
@@ -15,7 +16,7 @@ void run()
    /* Get router component */
    OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router);
 
-   /* Create MyController and add all of its endpoints to router */
+   /* Create Controllers and add all of its endpoints to router */
    auto myController = std::make_shared<MyController>();
    myController->addEndpointsToRouter(router);
 
@@ -28,6 +29,9 @@ void run()
    auto configurationController = std::make_shared<CConfigurationController>();
    configurationController->addEndpointsToRouter(router);
 
+   auto deviceController = std::make_shared<CDeviceController>();
+   deviceController->addEndpointsToRouter(router);
+
    /* Get connection handler component */
    OATPP_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, connectionHandler);
 
@@ -38,6 +42,7 @@ void run()
    docEndpoints->pushBackAll(acquisitionController->getEndpoints());
    docEndpoints->pushBackAll(automationController->getEndpoints());
    docEndpoints->pushBackAll(configurationController->getEndpoints());
+   docEndpoints->pushBackAll(deviceController->getEndpoints());
 
    auto swaggerController = oatpp::swagger::Controller::createShared(docEndpoints);
    swaggerController->addEndpointsToRouter(router);

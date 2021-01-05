@@ -13,6 +13,7 @@ add_library(${project_name}-lib
         src/controller/AcquisitionController.hpp
         src/controller/AutomationController.hpp
         src/controller/ConfigurationController.hpp
+        src/controller/DeviceController.hpp
 
         src/dto/CommonsDataDTO.hpp
         src/dto/EmptyResponseDTO.hpp
@@ -58,6 +59,10 @@ add_library(${project_name}-lib
         src/dto/configuration/SaveServerConfigurationBody.hpp
         src/dto/configuration/ExternalSectionTypeDTO.hpp
         src/dto/configuration/ExternalConfigurationBodyDTO.hpp
+
+        src/dto/device/AllDevicesResponseDTO.hpp
+        src/dto/device/AllDevicesDTO.hpp
+        src/dto/device/DeviceDataDTO.hpp
         src/dto/DTOs.hpp
 
 )
