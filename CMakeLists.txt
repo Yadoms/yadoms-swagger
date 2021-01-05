@@ -47,6 +47,7 @@ add_library(${project_name}-lib
         src/dto/automation/RuleResponseDTO.hpp
         src/dto/automation/RuleLogResponseDTO.hpp
         src/dto/automation/LogDTO.hpp
+        src/dto/automation/NameDTO.hpp
         src/dto/DTOs.hpp
 
 )

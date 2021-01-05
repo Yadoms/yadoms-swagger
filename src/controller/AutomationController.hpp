@@ -12,6 +12,7 @@
 #include "dto/automation/RuleResponseDTO.hpp"
 #include "dto/automation/RuleLogResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
+#include "dto/automation/NameDTO.hpp"
 
 class CAutomationController : public oatpp::web::server::api::ApiController
 {
@@ -222,6 +223,26 @@ public:
    }
 
    ENDPOINT("PUT", "/automation/rule/{ruleId}", updateRule,
+      PATH(String, ruleId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(duplicateRule)
+   {
+      info->addTag("Automation");
+      info->summary = "Duplicate a Rule";
+      info->description = "Duplicate a Rule with new rule copy name as a body";
+      info->addConsumes<Object<Name>>(
+         "application/json"
+         );
+      info->addResponse<Object<RuleResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("PUT", "/automation/rule/{ruleId}/duplicate", duplicateRule,
       PATH(String, ruleId))
    {
       return createResponse(Status::CODE_200, "OK");
