@@ -1,13 +1,13 @@
-﻿#ifndef RulesDataDTO_hpp
-#define RulesDataDTO_hpp
+﻿#ifndef RuleDataDTO_hpp
+#define RuleDataDTO_hpp
 
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/Types.hpp"
 #include OATPP_CODEGEN_BEGIN(DTO)
 
-class RulesData : public oatpp::DTO
+class RuleData : public oatpp::DTO
 {
-   DTO_INIT(RulesData, DTO);
+   DTO_INIT(RuleData, DTO);
    DTO_FIELD(Int32, id);
    DTO_FIELD(String, name);
    DTO_FIELD(String, description);

@@ -10,7 +10,7 @@
 class CreateRuleResponse : public CommonsData
 {
    DTO_INIT(CreateRuleResponse, CommonsData);
-   DTO_FIELD(Object<RulesData>, data);
+   DTO_FIELD(Object<RuleData>, data);
 };
 
 #include OATPP_CODEGEN_END(DTO)

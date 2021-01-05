@@ -206,6 +206,26 @@ public:
    {
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(updateRule)
+   {
+      info->addTag("Automation");
+      info->summary = "Update a Rule";
+      info->description = "Update a Rule";
+      info->addConsumes<Object<RuleData>>(
+         "application/json"
+         );
+      info->addResponse<Object<RuleResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("PUT", "/automation/rule/{ruleId}", updateRule,
+      PATH(String, ruleId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 #include OATPP_CODEGEN_END(ApiController)
 #endif /* CAcquisitionController_hpp */
