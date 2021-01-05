@@ -4,6 +4,7 @@
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/macro/component.hpp"
 #include "dto/device/AllDevicesResponseDTO.hpp"
+#include "dto/device/OneDeviceResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CDeviceController : public oatpp::web::server::api::ApiController
@@ -26,6 +27,23 @@ public:
    }
 
    ENDPOINT("Get", "/device", getAllDevices)
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getOneDevice)
+   {
+      info->addTag("Device");
+      info->summary = "Get one device";
+      info->description = "Get one device";
+      info->addResponse<Object<OneDeviceResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/device/{deviceId}", getOneDevice,
+            PATH(Int32,deviceId))
    {
       return createResponse(Status::CODE_200, "OK");
    }
