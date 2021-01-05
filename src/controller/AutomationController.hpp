@@ -155,6 +155,23 @@ public:
    {
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(deleteRuleLog)
+   {
+      info->addTag("Automation");
+      info->summary = "Delete Rule Log";
+      info->description = "Delete Rule Log";
+      info->addResponse<Object<DeleteRuleResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("DELETE", "/automation/rule/{ruleId}/log", deleteRuleLog,
+      PATH(String, ruleId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 #include OATPP_CODEGEN_END(ApiController)
 #endif /* CAcquisitionController_hpp */
