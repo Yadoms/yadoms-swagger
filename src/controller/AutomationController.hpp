@@ -172,6 +172,40 @@ public:
    {
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(startRule)
+   {
+      info->addTag("Automation");
+      info->summary = "Start Rule";
+      info->description = "Start Rule by RuleId";
+      info->addResponse<Object<RuleResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/automation/rule/{ruleId}/start", startRule,
+      PATH(String, ruleId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(stopRule)
+   {
+      info->addTag("Automation");
+      info->summary = "Stop Rule";
+      info->description = "Stop Rule by RuleId";
+      info->addResponse<Object<RuleResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/automation/rule/{ruleId}/stop", stopRule,
+      PATH(String, ruleId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 #include OATPP_CODEGEN_END(ApiController)
 #endif /* CAcquisitionController_hpp */
