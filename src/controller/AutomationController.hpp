@@ -9,8 +9,9 @@
 #include "dto/automation/CreateRuleBodyDTO.hpp"
 #include "dto/automation/CreateRuleResponseDTO.hpp"
 #include "dto/automation/DeleteRuleResponseDTO.hpp"
-#include OATPP_CODEGEN_BEGIN(ApiController)
 #include "dto/automation/RuleResponseDTO.hpp"
+#include "dto/automation/RuleLogResponseDTO.hpp"
+#include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CAutomationController : public oatpp::web::server::api::ApiController
 {
@@ -133,6 +134,23 @@ public:
    }
 
    ENDPOINT("Get", "/automation/rule/{ruleId}/code", getRuleCode,
+      PATH(String, ruleId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getRuleLog)
+   {
+      info->addTag("Automation");
+      info->summary = "Get Rule Log";
+      info->description = "Get Rule Log";
+      info->addResponse<Object<RuleLogResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/automation/rule/{ruleId}/log", getRuleLog,
       PATH(String, ruleId))
    {
       return createResponse(Status::CODE_200, "OK");
