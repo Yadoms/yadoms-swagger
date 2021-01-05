@@ -5,6 +5,7 @@
 #include "oatpp-swagger/Controller.hpp"
 #include "controller/AcquisitionController.hpp"
 #include "controller/AutomationController.hpp"
+#include "controller/ConfigurationController.hpp"
 
 void run()
 {
@@ -24,6 +25,9 @@ void run()
    auto automationController = std::make_shared<CAutomationController>();
    automationController->addEndpointsToRouter(router);
 
+   auto configurationController = std::make_shared<CConfigurationController>();
+   configurationController->addEndpointsToRouter(router);
+
    /* Get connection handler component */
    OATPP_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, connectionHandler);
 
@@ -33,6 +37,7 @@ void run()
    auto docEndpoints = oatpp::swagger::Controller::Endpoints::createShared();
    docEndpoints->pushBackAll(acquisitionController->getEndpoints());
    docEndpoints->pushBackAll(automationController->getEndpoints());
+   docEndpoints->pushBackAll(configurationController->getEndpoints());
 
    auto swaggerController = oatpp::swagger::Controller::createShared(docEndpoints);
    swaggerController->addEndpointsToRouter(router);
@@ -44,7 +49,10 @@ void run()
    OATPP_LOGI("Yadoms ", "Server running on port %s", connectionProvider->getProperty("port").getData());
 
    /* Run server */
-   server.run();
+   // TODO : To be removed in further version
+   std::function<bool()> condition = [] {return true; };
+   server.run(condition);
+   //server.run();
 }
 
 /**

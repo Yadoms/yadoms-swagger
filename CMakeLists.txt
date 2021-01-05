@@ -12,6 +12,7 @@ add_library(${project_name}-lib
         src/controller/MyController.hpp
         src/controller/AcquisitionController.hpp
         src/controller/AutomationController.hpp
+        src/controller/ConfigurationController.hpp
 
         src/dto/CommonsDataDTO.hpp
         src/dto/acquisition/KeywordsLastDataResponseDTO.hpp
@@ -48,6 +49,12 @@ add_library(${project_name}-lib
         src/dto/automation/RuleLogResponseDTO.hpp
         src/dto/automation/LogDTO.hpp
         src/dto/automation/NameDTO.hpp
+
+        src/dto/configuration/ServerConfigurationResponseDTO.hpp
+        src/dto/configuration/ServerConfigurationDataDTO.hpp
+        src/dto/configuration/LocationDTO.hpp
+        src/dto/configuration/BasicAuthenticationDTO.hpp
+
         src/dto/DTOs.hpp
 
 )
