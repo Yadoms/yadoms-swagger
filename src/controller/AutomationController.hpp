@@ -10,6 +10,7 @@
 #include "dto/automation/CreateRuleResponseDTO.hpp"
 #include "dto/automation/DeleteRuleResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
+#include "dto/automation/RuleResponseDTO.hpp"
 
 class CAutomationController : public oatpp::web::server::api::ApiController
 {
@@ -98,6 +99,23 @@ public:
    }
 
    ENDPOINT("DELETE", "/automation/rule/{ruleId}", deleteRule,
+      PATH(String, ruleId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getRule)
+   {
+      info->addTag("Automation");
+      info->summary = "Get Rule";
+      info->description = "Get Rule";
+      info->addResponse<Object<RuleResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/automation/rule/{ruleId}", getRule,
       PATH(String, ruleId))
    {
       return createResponse(Status::CODE_200, "OK");
