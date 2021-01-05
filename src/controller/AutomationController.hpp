@@ -5,7 +5,7 @@
 #include "oatpp/core/macro/component.hpp"
 #include "dto/automation/AllInterpretersResponseDTO.hpp"
 #include "dto/automation/AllRulesResponseDTO.hpp"
-#include "dto/automation/RuleCodeTemplateResponseDTO.hpp"
+#include "dto/automation/RuleCodeResponseDTO.hpp"
 #include "dto/automation/CreateRuleBodyDTO.hpp"
 #include "dto/automation/CreateRuleResponseDTO.hpp"
 #include "dto/automation/DeleteRuleResponseDTO.hpp"
@@ -58,7 +58,7 @@ public:
       info->addTag("Automation");
       info->summary = "Rule Code Template";
       info->description = "Get rule code template";
-      info->addResponse<Object<RuleCodeTemplateResponse>>(
+      info->addResponse<Object<RuleCodeResponse>>(
          Status::CODE_200,
          "application/json"
          );
@@ -116,6 +116,23 @@ public:
    }
 
    ENDPOINT("Get", "/automation/rule/{ruleId}", getRule,
+      PATH(String, ruleId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getRuleCode)
+   {
+      info->addTag("Automation");
+      info->summary = "Get Rule Code";
+      info->description = "Get Rule Code";
+      info->addResponse<Object<RuleCodeResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/automation/rule/{ruleId}/code", getRuleCode,
       PATH(String, ruleId))
    {
       return createResponse(Status::CODE_200, "OK");
