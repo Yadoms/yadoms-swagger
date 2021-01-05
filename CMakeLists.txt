@@ -15,6 +15,7 @@ add_library(${project_name}-lib
         src/controller/ConfigurationController.hpp
 
         src/dto/CommonsDataDTO.hpp
+        src/dto/EmptyResponseDTO.hpp
         src/dto/acquisition/KeywordsLastDataResponseDTO.hpp
         src/dto/acquisition/KeywordsLastDataBodyDTO.hpp
         src/dto/acquisition/LastValueDTO.hpp
@@ -42,7 +43,6 @@ add_library(${project_name}-lib
         src/dto/automation/CreateRuleBodyDTO.hpp
         src/dto/automation/CodeDTO.hpp
         src/dto/automation/CreateRuleResponseDTO.hpp
-        src/dto/automation/DeleteRuleResponseDTO
         src/dto/automation/InterpreterTypeDTO.hpp
         src/dto/automation/EditorTypeDTO.hpp
         src/dto/automation/RuleResponseDTO.hpp
@@ -54,7 +54,7 @@ add_library(${project_name}-lib
         src/dto/configuration/ServerConfigurationDataDTO.hpp
         src/dto/configuration/LocationDTO.hpp
         src/dto/configuration/BasicAuthenticationDTO.hpp
-
+        src/dto/configuration/SaveServerConfigurationBody.hpp
         src/dto/DTOs.hpp
 
 )

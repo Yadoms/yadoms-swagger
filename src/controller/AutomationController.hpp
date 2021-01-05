@@ -8,11 +8,12 @@
 #include "dto/automation/RuleCodeResponseDTO.hpp"
 #include "dto/automation/CreateRuleBodyDTO.hpp"
 #include "dto/automation/CreateRuleResponseDTO.hpp"
-#include "dto/automation/DeleteRuleResponseDTO.hpp"
 #include "dto/automation/RuleResponseDTO.hpp"
 #include "dto/automation/RuleLogResponseDTO.hpp"
-#include OATPP_CODEGEN_BEGIN(ApiController)
 #include "dto/automation/NameDTO.hpp"
+#include "dto/EmptyResponseDTO.hpp"
+
+#include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CAutomationController : public oatpp::web::server::api::ApiController
 {
@@ -94,7 +95,7 @@ public:
       info->addTag("Automation");
       info->summary = "Delete Rule";
       info->description = "Delete Rule";
-      info->addResponse<Object<DeleteRuleResponse>>(
+      info->addResponse<Object<EmptyResponse>>(
          Status::CODE_200,
          "application/json"
          );
@@ -162,7 +163,7 @@ public:
       info->addTag("Automation");
       info->summary = "Delete Rule Log";
       info->description = "Delete Rule Log";
-      info->addResponse<Object<DeleteRuleResponse>>(
+      info->addResponse<Object<EmptyResponse>>(
          Status::CODE_200,
          "application/json"
          );
