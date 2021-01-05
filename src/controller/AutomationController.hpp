@@ -57,7 +57,6 @@ public:
       info->addTag("Automation");
       info->summary = "Rule Code Template";
       info->description = "Get rule code template";
-      info->pathParams["interpreterName"].description = "Interpreter name (Example : yPython3, yPython2 and code)";
       info->addResponse<Object<RuleCodeTemplateResponse>>(
          Status::CODE_200,
          "application/json"
@@ -65,7 +64,7 @@ public:
    }
 
    ENDPOINT("Get", "/automation/rule/{interpreterName}/codeTemplate", getRuleCodeTemplate,
-            PATH(String, interpreterName))
+            PATH(Enum<InterpreterType>, interpreterName))
    {
       return createResponse(Status::CODE_200, "OK");
    }
