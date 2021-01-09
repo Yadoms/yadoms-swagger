@@ -88,6 +88,7 @@ set(YADOMS_SWAGGER_DEVICE_DTO_SOURCES
         src/dto/device/DeviceDataToUpdateDTO.hpp
         src/dto/device/mergeDevicesBodyDTO.hpp
         src/dto/device/KeywordCorrespondenceDTO.hpp
+        src/dto/device/FriendlyNameDTO.hpp
 )
 
 set(YADOMS_SWAGGER_DTO_SOURCES

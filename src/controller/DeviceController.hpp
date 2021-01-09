@@ -16,6 +16,7 @@
 #include "dto/device/KeywordsLastStateResponseDTO.hpp"
 #include "dto/device/DeviceDataToUpdateDTO.hpp"
 #include "dto/device/mergeDevicesBodyDTO.hpp"
+#include "dto/device/FriendlyNameDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CDeviceController : public oatpp::web::server::api::ApiController
@@ -317,6 +318,24 @@ public:
 
    ENDPOINT("PUT", "/device/{deviceId}/restore", restoreDevice,
       PATH(Int32, deviceId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(updateKeywordFriendlyName)
+   {
+      info->addTag("Device");
+      info->summary = "update Keyword FriendlyName";
+      info->description = "update Keyword FriendlyName";
+      info->addResponse<Object<KeywordsResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("PUT", "/device/keyword/{keywordId}", updateKeywordFriendlyName,
+      PATH(Int32, keywordId), 
+      BODY_DTO(Object<FriendlyName>, friendlyName))
    {
       return createResponse(Status::CODE_200, "OK");
    }
