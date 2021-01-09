@@ -7,6 +7,7 @@
 #include "dto/device/OneDeviceResponseDTO.hpp"
 #include "dto/device/CompatibleForMergeDeviceDTO.hpp"
 #include "dto/shared/EmptyResponseDTO.hpp"
+#include "dto/shared/KeywordDataTypeDTO.hpp"
 #include "dto/device/AllKeywordsResponseDTO.hpp"
 #include "dto/device/KeywordResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
@@ -138,6 +139,23 @@ public:
 
    ENDPOINT("Get", "/device/matchcapacity/{keywordAccessMode}/{capacityName}", getDevicesWithCapacity,
       PATH(Enum<KeywordAccessMode>, keywordAccessMode), PATH(String, capacityName))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getDeviceWithCapacityType)
+   {
+      info->addTag("Device");
+      info->summary = "Get devices with capacity Type";
+      info->description = "Get the device list which support a capacity";
+      info->addResponse<Object<AllDevicesResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/device/matchcapacitytype/{keywordAccessMode}/{keywordDataType}", getDeviceWithCapacityType,
+      PATH(Enum<KeywordAccessMode>, keywordAccessMode), PATH(Enum<KeywordDataType>, keywordDataType))
    {
       return createResponse(Status::CODE_200, "OK");
    }
