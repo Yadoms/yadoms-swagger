@@ -15,6 +15,7 @@
 #include "dto/device/KeywordsLastStateBodyDTO.hpp"
 #include "dto/device/KeywordsLastStateResponseDTO.hpp"
 #include "dto/device/DeviceDataToUpdateDTO.hpp"
+#include "dto/device/mergeDevicesBodyDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CDeviceController : public oatpp::web::server::api::ApiController
@@ -282,6 +283,23 @@ public:
 
    ENDPOINT("PUT", "/device/{deviceId}/configuration", updateDeviceConfiguration,
       BODY_DTO(Object<DeviceDataToUpdate>, deviceData), PATH(Int32, deviceId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(mergeDevices)
+   {
+      info->addTag("Device");
+      info->summary = "merge Devices";
+      info->description = "merge Devices";
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("PUT", "/device/merge", mergeDevices,
+      BODY_DTO(Object<MergeDevicesBody>, deviceData))
    {
       return createResponse(Status::CODE_200, "OK");
    }

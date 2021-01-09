@@ -86,6 +86,8 @@ set(YADOMS_SWAGGER_DEVICE_DTO_SOURCES
         src/dto/device/KeywordsLastStateBodyDTO.hpp
         src/dto/device/KeywordsLastStateResponseDTO.hpp
         src/dto/device/DeviceDataToUpdateDTO.hpp
+        src/dto/device/mergeDevicesBodyDTO.hpp
+        src/dto/device/KeywordCorrespondenceDTO.hpp
 )
 
 set(YADOMS_SWAGGER_DTO_SOURCES
@@ -108,6 +110,10 @@ source_group(sources\\dto\\acquisition dto/acquisition/*.*)
 source_group(sources\\dto\\automation dto/automation/*.*)
 source_group(sources\\dto\\configuration dto/configuration/*.*)
 source_group(sources\\dto\\device dto/device/*.*)
+
+ # Allow big object
+add_definitions(/bigobj)
+
 add_library(${project_name}-lib
         ${YADOMS_SWAGGER_SOURCES}
 )
