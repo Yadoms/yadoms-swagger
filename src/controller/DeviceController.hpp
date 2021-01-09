@@ -124,6 +124,23 @@ public:
    {
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(getDevicesWithCapacity)
+   {
+      info->addTag("Device");
+      info->summary = "Get devices with capacity";
+      info->description = "Get the device list which support a capacity";
+      info->addResponse<Object<AllDevicesResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/device/matchcapacity/{keywordAccessMode}/{capacityName}", getDevicesWithCapacity,
+      PATH(Enum<KeywordAccessMode>, keywordAccessMode), PATH(String, capacityName))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 #include OATPP_CODEGEN_END(ApiController)
 #endif /* DeviceController_hpp */
