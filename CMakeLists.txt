@@ -20,6 +20,10 @@ set(YADOMS_SWAGGER_SHARED_DTO_SOURCES
         src/dto/shared/CommonsDataDTO.hpp
         src/dto/shared/EmptyResponseDTO.hpp
         src/dto/shared/SimpleResponseDTO.hpp
+        src/dto/shared/KeywordAccessModeDTO.hpp
+        src/dto/shared/KeywordDataTypeDTO.hpp
+        src/dto/shared/MeasureTypeDTO.hpp
+        src/dto/shared/HistoryDepthDTO.hpp
 )
 set(YADOMS_SWAGGER_ACQUISITION_DTO_SOURCES 
         src/dto/acquisition/KeywordsLastDataResponseDTO.hpp
@@ -71,6 +75,10 @@ set(YADOMS_SWAGGER_DEVICE_DTO_SOURCES
         src/dto/device/OneDeviceResponseDTO.hpp
         src/dto/device/CompatibleForMergeDeviceDTO.hpp
         src/dto/device/CompatibleDevicesAndKeywordsByDeviceDTO.hpp
+        src/dto/device/AllKeywordsResponseDTO.hpp
+        src/dto/device/KeywordsDTO.hpp
+        src/dto/device/KeywordDataDTO.hpp
+        src/dto/device/TypeInfoDTO.hpp
 )
 
 set(YADOMS_SWAGGER_DTO_SOURCES
