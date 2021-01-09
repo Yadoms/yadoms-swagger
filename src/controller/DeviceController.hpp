@@ -147,7 +147,7 @@ public:
    {
       info->addTag("Device");
       info->summary = "Get devices with capacity Type";
-      info->description = "Get the device list which support a capacity";
+      info->description = "Get the device list which support a capacity type";
       info->addResponse<Object<AllDevicesResponse>>(
          Status::CODE_200,
          "application/json"
@@ -156,6 +156,23 @@ public:
 
    ENDPOINT("Get", "/device/matchcapacitytype/{keywordAccessMode}/{keywordDataType}", getDeviceWithCapacityType,
       PATH(Enum<KeywordAccessMode>, keywordAccessMode), PATH(Enum<KeywordDataType>, keywordDataType))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getDeviceWithKeywordAccessMode)
+   {
+      info->addTag("Device");
+      info->summary = "Get device with Keyword Access Mode";
+      info->description = "Get the device list which contains at least one keyword with matching access mode";
+      info->addResponse<Object<AllDevicesResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/device/matchkeywordaccess/{keywordAccessMode}", getDeviceWithKeywordAccessMode,
+      PATH(Enum<KeywordAccessMode>, keywordAccessMode))
    {
       return createResponse(Status::CODE_200, "OK");
    }
