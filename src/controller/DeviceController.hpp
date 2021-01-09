@@ -11,6 +11,7 @@
 #include "dto/device/AllKeywordsResponseDTO.hpp"
 #include "dto/device/KeywordResponseDTO.hpp"
 #include "dto/device/DeviceMatchKeywordCriteriaBodyDTO.hpp"
+#include "dto/device/DeviceKeywordsForCapacityResponse.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CDeviceController : public oatpp::web::server::api::ApiController
@@ -208,6 +209,25 @@ public:
 
    ENDPOINT("POST", "/device/matchkeywordcriteria", getDeviceMatchKeywordCriteria, 
       BODY_DTO(Object<DeviceMatchKeywordCriteria>, interpreterName))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getDeviceKeywordsForCapacity)
+   {
+      info->addTag("Device");
+      info->summary = "Get all keywords which match capacity for a device";
+      info->description = "List all keywords which match capacity for a device";
+      info->addResponse<Object<DeviceKeywordsForCapacityResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/device/{deviceId}/{keywordAccessMode}/{capacityName}", getDeviceKeywordsForCapacity,
+      PATH(Int32, deviceId),
+      PATH(Enum<KeywordAccessMode>, keywordAccessMode),
+      PATH(String, capacityName))
    {
       return createResponse(Status::CODE_200, "OK");
    }
