@@ -8,6 +8,7 @@
 #include "dto/device/CompatibleForMergeDeviceDTO.hpp"
 #include "dto/shared/EmptyResponseDTO.hpp"
 #include "dto/shared/KeywordDataTypeDTO.hpp"
+#include "dto/shared/RemoveDeviceDTO.hpp"
 #include "dto/device/AllKeywordsResponseDTO.hpp"
 #include "dto/device/KeywordResponseDTO.hpp"
 #include "dto/device/DeviceMatchKeywordCriteriaBodyDTO.hpp"
@@ -17,6 +18,7 @@
 #include "dto/device/DeviceDataToUpdateDTO.hpp"
 #include "dto/device/mergeDevicesBodyDTO.hpp"
 #include "dto/device/FriendlyNameDTO.hpp"
+#include "dto/device/BlacklistDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CDeviceController : public oatpp::web::server::api::ApiController
@@ -336,6 +338,60 @@ public:
    ENDPOINT("PUT", "/device/keyword/{keywordId}", updateKeywordFriendlyName,
       PATH(Int32, keywordId), 
       BODY_DTO(Object<FriendlyName>, friendlyName))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(updateKeywordBlacklist)
+   {
+      info->addTag("Device");
+      info->summary = "update Keyword Blacklist";
+      info->description = "update Keyword Blacklist";
+      info->addResponse<Object<KeywordsResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("PUT", "/device/keyword/{keywordId}/blacklist", updateKeywordBlacklist,
+      PATH(Int32, keywordId),
+      BODY_DTO(Object<Blacklist>, blacklist))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+   // TODO : 
+   ENDPOINT_INFO(sendKeywordCommand)
+   {
+      info->addTag("Device");
+      info->summary = "send Keyword Command";
+      info->description = "Send a command to a keyword";
+      info->addResponse<Object<KeywordsResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("POST", "/device/keyword/{keywordId}/command", sendKeywordCommand,
+      PATH(Int32, keywordId),
+      BODY_DTO(Object<Blacklist>, blacklist))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(deleteDevice)
+   {
+      info->addTag("Device");
+      info->summary = "delete a Device";
+      info->description = "delete a Device";
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("DELETE", "/device/{deviceId}/{removeDevice}", deleteDevice,
+      PATH(Int32, deviceId),
+      PATH(Enum<RemoveDevice>, removeDevice))
    {
       return createResponse(Status::CODE_200, "OK");
    }

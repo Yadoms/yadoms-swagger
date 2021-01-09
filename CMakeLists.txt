@@ -24,6 +24,7 @@ set(YADOMS_SWAGGER_SHARED_DTO_SOURCES
         src/dto/shared/KeywordDataTypeDTO.hpp
         src/dto/shared/MeasureTypeDTO.hpp
         src/dto/shared/HistoryDepthDTO.hpp
+        src/dto/shared/RemoveDeviceDTO.hpp
 )
 set(YADOMS_SWAGGER_ACQUISITION_DTO_SOURCES 
         src/dto/acquisition/KeywordsLastDataResponseDTO.hpp
@@ -89,6 +90,7 @@ set(YADOMS_SWAGGER_DEVICE_DTO_SOURCES
         src/dto/device/mergeDevicesBodyDTO.hpp
         src/dto/device/KeywordCorrespondenceDTO.hpp
         src/dto/device/FriendlyNameDTO.hpp
+        src/dto/device/BlacklistDTO.hpp
 )
 
 set(YADOMS_SWAGGER_DTO_SOURCES
