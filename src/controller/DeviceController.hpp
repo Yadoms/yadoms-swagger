@@ -176,6 +176,23 @@ public:
    {
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(getDeviceWithKeywordHistoryDepth)
+   {
+      info->addTag("Device");
+      info->summary = "Get device with Keyword History Depth";
+      info->description = "Get the device list which contains at least one keyword with matching history depth policy";
+      info->addResponse<Object<AllDevicesResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/device/matchkeywordhistorydepth/{historyDepth}", getDeviceWithKeywordHistoryDepth,
+      PATH(Enum<HistoryDepth>, historyDepth))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 #include OATPP_CODEGEN_END(ApiController)
 #endif /* DeviceController_hpp */
