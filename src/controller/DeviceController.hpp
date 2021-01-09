@@ -12,6 +12,8 @@
 #include "dto/device/KeywordResponseDTO.hpp"
 #include "dto/device/DeviceMatchKeywordCriteriaBodyDTO.hpp"
 #include "dto/device/KeywordsResponseDTO.hpp"
+#include "dto/device/KeywordsLastStateBodyDTO.hpp"
+#include "dto/device/KeywordsLastStateResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CDeviceController : public oatpp::web::server::api::ApiController
@@ -245,6 +247,23 @@ public:
 
    ENDPOINT("Get", "/device/{deviceId}/keyword", getDeviceKeywords,
       PATH(Int32, deviceId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getKeywordsLastState)
+   {
+      info->addTag("Device");
+      info->summary = "Get Keywords Last State";
+      info->description = "Get the last data of a keywords list";
+      info->addResponse<Object<KeywordsLastStateResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("POST", "/device/keywordslastvalue", getKeywordsLastState,
+      BODY_DTO(Object<KeywordsLastStateBody>, KeywordsLastState))
    {
       return createResponse(Status::CODE_200, "OK");
    }
