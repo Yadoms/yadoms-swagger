@@ -10,6 +10,7 @@
 #include "dto/shared/KeywordDataTypeDTO.hpp"
 #include "dto/device/AllKeywordsResponseDTO.hpp"
 #include "dto/device/KeywordResponseDTO.hpp"
+#include "dto/device/DeviceMatchKeywordCriteriaBodyDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CDeviceController : public oatpp::web::server::api::ApiController
@@ -190,6 +191,23 @@ public:
 
    ENDPOINT("Get", "/device/matchkeywordhistorydepth/{historyDepth}", getDeviceWithKeywordHistoryDepth,
       PATH(Enum<HistoryDepth>, historyDepth))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getDeviceMatchKeywordCriteria)
+   {
+      info->addTag("Device");
+      info->summary = "Get all devices matching some criteria on keywords";
+      info->description = "Get all devices matching some criteria on keywords. \n At least one expected value needed";
+      info->addResponse<Object<AllDevicesResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("POST", "/device/matchkeywordcriteria", getDeviceMatchKeywordCriteria, 
+      BODY_DTO(Object<DeviceMatchKeywordCriteria>, interpreterName))
    {
       return createResponse(Status::CODE_200, "OK");
    }
