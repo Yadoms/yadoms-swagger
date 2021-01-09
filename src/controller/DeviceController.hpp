@@ -8,6 +8,7 @@
 #include "dto/device/CompatibleForMergeDeviceDTO.hpp"
 #include "dto/shared/EmptyResponseDTO.hpp"
 #include "dto/device/AllKeywordsResponseDTO.hpp"
+#include "dto/device/KeywordResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CDeviceController : public oatpp::web::server::api::ApiController
@@ -103,6 +104,23 @@ public:
    }
 
    ENDPOINT("Get", "/device/keyword", getAllKeywords)
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getKeyword)
+   {
+      info->addTag("Device");
+      info->summary = "Get a keyword";
+      info->description = "Get a keyword";
+      info->addResponse<Object<KeywordResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/device/keyword/{keywordId}", getKeyword, 
+            PATH(Int32, keywordId))
    {
       return createResponse(Status::CODE_200, "OK");
    }
