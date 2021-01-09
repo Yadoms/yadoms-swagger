@@ -303,6 +303,23 @@ public:
    {
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(restoreDevice)
+   {
+      info->addTag("Device");
+      info->summary = "restore device";
+      info->description = "Update the device blacklist state";
+      info->addResponse<Object<OneDeviceResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("PUT", "/device/{deviceId}/restore", restoreDevice,
+      PATH(Int32, deviceId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 #include OATPP_CODEGEN_END(ApiController)
 #endif /* DeviceController_hpp */
