@@ -6,6 +6,7 @@
 #include "dto/device/AllDevicesResponseDTO.hpp"
 #include "dto/device/OneDeviceResponseDTO.hpp"
 #include "dto/device/CompatibleForMergeDeviceDTO.hpp"
+#include "dto/shared/EmptyResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CDeviceController : public oatpp::web::server::api::ApiController
@@ -67,6 +68,23 @@ public:
    }
 
    ENDPOINT("Get", "/device/{deviceId}/compatibleForMergeDevice", getCompatibleForMergeDevice,
+      PATH(Int32, deviceId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getDeviceConfigurationSchema)
+   {
+      info->addTag("Device");
+      info->summary = "Get Device Configuration Schema";
+      info->description = "Get Device Configuration Schema";
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/device/{deviceId}/configurationSchema", getDeviceConfigurationSchema,
       PATH(Int32, deviceId))
    {
       return createResponse(Status::CODE_200, "OK");
