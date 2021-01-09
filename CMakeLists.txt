@@ -79,9 +79,9 @@ set(YADOMS_SWAGGER_DEVICE_DTO_SOURCES
         src/dto/device/KeywordsDTO.hpp
         src/dto/device/KeywordDataDTO.hpp
         src/dto/device/TypeInfoDTO.hpp
-        src/dto/device/KeywordResponseDTO.hpp
+        src/dto/device/KeywordsResponseDTO.hpp
         src/dto/device/DeviceMatchKeywordCriteriaBodyDTO.hpp
-        src/dto/device/DeviceKeywordsForCapacityResponse.hpp
+        src/dto/device/KeywordResponseDTO.hpp
         src/dto/device/KeywordDTO.hpp
 )
 

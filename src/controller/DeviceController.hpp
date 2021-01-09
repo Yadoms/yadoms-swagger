@@ -11,7 +11,7 @@
 #include "dto/device/AllKeywordsResponseDTO.hpp"
 #include "dto/device/KeywordResponseDTO.hpp"
 #include "dto/device/DeviceMatchKeywordCriteriaBodyDTO.hpp"
-#include "dto/device/DeviceKeywordsForCapacityResponse.hpp"
+#include "dto/device/KeywordsResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CDeviceController : public oatpp::web::server::api::ApiController
@@ -116,7 +116,7 @@ public:
       info->addTag("Device");
       info->summary = "Get a keyword";
       info->description = "Get a keyword";
-      info->addResponse<Object<KeywordResponse>>(
+      info->addResponse<Object<KeywordsResponse>>(
          Status::CODE_200,
          "application/json"
          );
@@ -218,7 +218,7 @@ public:
       info->addTag("Device");
       info->summary = "Get all keywords which match capacity for a device";
       info->description = "List all keywords which match capacity for a device";
-      info->addResponse<Object<DeviceKeywordsForCapacityResponse>>(
+      info->addResponse<Object<KeywordResponse>>(
          Status::CODE_200,
          "application/json"
          );
@@ -228,6 +228,23 @@ public:
       PATH(Int32, deviceId),
       PATH(Enum<KeywordAccessMode>, keywordAccessMode),
       PATH(String, capacityName))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getDeviceKeywords)
+   {
+      info->addTag("Device");
+      info->summary = "Get Device keywords";
+      info->description = "List all keywords for a device";
+      info->addResponse<Object<KeywordResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/device/{deviceId}/keyword", getDeviceKeywords,
+      PATH(Int32, deviceId))
    {
       return createResponse(Status::CODE_200, "OK");
    }
