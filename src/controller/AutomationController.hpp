@@ -11,7 +11,7 @@
 #include "dto/automation/RuleResponseDTO.hpp"
 #include "dto/automation/RuleLogResponseDTO.hpp"
 #include "dto/automation/NameDTO.hpp"
-#include "dto/EmptyResponseDTO.hpp"
+#include "dto/shared/EmptyResponseDTO.hpp"
 
 #include OATPP_CODEGEN_BEGIN(ApiController)
 

@@ -4,7 +4,7 @@
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/Types.hpp"
 #include "dto/automation/RulesDTO.hpp"
-#include "dto/CommonsDataDTO.hpp"
+#include "dto/shared/CommonsDataDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(DTO)
 
 class AllRulesResponse : public CommonsData

@@ -5,10 +5,12 @@
 #include "oatpp/core/macro/component.hpp"
 #include "dto/configuration/ServerConfigurationResponseDTO.hpp"
 #include "dto/configuration/SaveServerConfigurationBody.hpp"
-#include "dto/SimpleResponseDTO.hpp"
+#include "dto/shared/SimpleResponseDTO.hpp"
 #include "dto/configuration/ExternalSectionTypeDTO.hpp"
 #include "dto/configuration/ExternalConfigurationBodyDTO.hpp"
+#include "dto/shared/EmptyResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
+
 
 class CConfigurationController : public oatpp::web::server::api::ApiController
 {

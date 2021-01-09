@@ -1,4 +1,3 @@
-#include "./controller/MyController.hpp"
 #include "./AppComponent.hpp"
 #include "oatpp/network/Server.hpp"
 #include <iostream>
@@ -17,8 +16,6 @@ void run()
    OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router);
 
    /* Create Controllers and add all of its endpoints to router */
-   auto myController = std::make_shared<MyController>();
-   myController->addEndpointsToRouter(router);
 
    auto acquisitionController = std::make_shared<CAcquisitionController>();
    acquisitionController->addEndpointsToRouter(router);

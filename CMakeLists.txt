@@ -6,26 +6,28 @@ project(${project_name})
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_library(${project_name}-lib
-        src/AppComponent.hpp
-        src/controller/MyController.cpp
-        src/controller/MyController.hpp
+set(YADOMS_SWAGGER_CONTROLLER_SOURCES
         src/controller/AcquisitionController.hpp
+        src/controller/AcquisitionController.cpp
         src/controller/AutomationController.hpp
+        src/controller/AutomationController.cpp
         src/controller/ConfigurationController.hpp
+        src/controller/ConfigurationController.cpp
         src/controller/DeviceController.hpp
-
-        src/dto/CommonsDataDTO.hpp
-        src/dto/EmptyResponseDTO.hpp
-        src/dto/SimpleResponseDTO.hpp
+        src/controller/DeviceController.cpp
+)
+set(YADOMS_SWAGGER_SHARED_DTO_SOURCES 
+        src/dto/shared/CommonsDataDTO.hpp
+        src/dto/shared/EmptyResponseDTO.hpp
+        src/dto/shared/SimpleResponseDTO.hpp
+)
+set(YADOMS_SWAGGER_ACQUISITION_DTO_SOURCES 
         src/dto/acquisition/KeywordsLastDataResponseDTO.hpp
         src/dto/acquisition/KeywordsLastDataBodyDTO.hpp
         src/dto/acquisition/LastValueDTO.hpp
-
         src/dto/acquisition/InfoDTO.hpp
         src/dto/acquisition/KeywordsListInfoBodyDTO.hpp
         src/dto/acquisition/KeywordsListInfoResponseDTO.hpp
-
         src/dto/acquisition/KeywordInfoBodyDTO.hpp
         src/dto/acquisition/KeywordInfoResponseDTO.hpp
         src/dto/acquisition/KeywordLastDataResponseDTO.hpp
@@ -35,7 +37,8 @@ add_library(${project_name}-lib
         src/dto/acquisition/KeywordDataByDateResponseDTO.hpp
         src/dto/acquisition/KeywordDataByDateDTO.hpp
         src/dto/acquisition/HourDataKeyDTO.hpp
-
+)
+set(YADOMS_SWAGGER_AUTOMATION_DTO_SOURCES
         src/dto/automation/AllInterpretersResponseDTO.hpp
         src/dto/automation/InterpretersDTO.hpp
         src/dto/automation/AllRulesResponseDTO.hpp
@@ -51,7 +54,8 @@ add_library(${project_name}-lib
         src/dto/automation/RuleLogResponseDTO.hpp
         src/dto/automation/LogDTO.hpp
         src/dto/automation/NameDTO.hpp
-
+)
+set(YADOMS_SWAGGER_CONFIGURATION_DTO_SOURCES 
         src/dto/configuration/ServerConfigurationResponseDTO.hpp
         src/dto/configuration/ServerConfigurationDataDTO.hpp
         src/dto/configuration/LocationDTO.hpp
@@ -59,15 +63,38 @@ add_library(${project_name}-lib
         src/dto/configuration/SaveServerConfigurationBody.hpp
         src/dto/configuration/ExternalSectionTypeDTO.hpp
         src/dto/configuration/ExternalConfigurationBodyDTO.hpp
-
+)
+set(YADOMS_SWAGGER_DEVICE_DTO_SOURCES 
         src/dto/device/AllDevicesResponseDTO.hpp
         src/dto/device/AllDevicesDTO.hpp
         src/dto/device/DeviceDataDTO.hpp
         src/dto/device/OneDeviceResponseDTO.hpp
         src/dto/device/CompatibleForMergeDeviceDTO.hpp
         src/dto/device/CompatibleDevicesAndKeywordsByDeviceDTO.hpp
-        src/dto/DTOs.hpp
+)
 
+set(YADOMS_SWAGGER_DTO_SOURCES
+        ${YADOMS_SWAGGER_SHARED_DTO_SOURCES}
+        ${YADOMS_SWAGGER_ACQUISITION_DTO_SOURCES}
+        ${YADOMS_SWAGGER_AUTOMATION_DTO_SOURCES}
+        ${YADOMS_SWAGGER_CONFIGURATION_DTO_SOURCES}
+        ${YADOMS_SWAGGER_DEVICE_DTO_SOURCES}
+)
+
+set(YADOMS_SWAGGER_SOURCES
+        src/AppComponent.hpp
+        ${YADOMS_SWAGGER_CONTROLLER_SOURCES}
+        ${YADOMS_SWAGGER_DTO_SOURCES}
+
+)
+source_group(sources\\controller\\ controller/*.*)
+source_group(sources\\dto\\shared dto/shared/*.*)
+source_group(sources\\dto\\acquisition dto/acquisition/*.*)
+source_group(sources\\dto\\automation dto/automation/*.*)
+source_group(sources\\dto\\configuration dto/configuration/*.*)
+source_group(sources\\dto\\device dto/device/*.*)
+add_library(${project_name}-lib
+        ${YADOMS_SWAGGER_SOURCES}
 )
 
 ## link libs
@@ -77,7 +104,6 @@ find_package(oatpp-swagger  1.2.5 REQUIRED)
 
 target_link_libraries(${project_name}-lib
         PUBLIC oatpp::oatpp
-        PUBLIC oatpp::oatpp-test
 		  PUBLIC oatpp::oatpp-swagger
 )
 
@@ -92,27 +118,13 @@ target_include_directories(${project_name}-lib PUBLIC src)
 ## add executables
 
 add_executable(${project_name}-exe
-        src/App.cpp
-        test/app/MyApiTestClient.hpp)
+        src/App.cpp)
 target_link_libraries(${project_name}-exe ${project_name}-lib)
 add_dependencies(${project_name}-exe ${project_name}-lib)
 
-add_executable(${project_name}-test
-        test/tests.cpp
-        test/app/TestComponent.hpp
-        test/app/MyApiTestClient.hpp
-        test/MyControllerTest.cpp
-        test/MyControllerTest.hpp
-)
-
-target_link_libraries(${project_name}-test ${project_name}-lib)
-add_dependencies(${project_name}-test ${project_name}-lib)
-
-set_target_properties(${project_name}-lib ${project_name}-exe ${project_name}-test PROPERTIES
+set_target_properties(${project_name}-lib ${project_name}-exe PROPERTIES
         CXX_STANDARD 11
         CXX_EXTENSIONS OFF
         CXX_STANDARD_REQUIRED ON
 )
 
-enable_testing()
-add_test(project-tests ${project_name}-test)
