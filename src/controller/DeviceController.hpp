@@ -5,6 +5,7 @@
 #include "oatpp/core/macro/component.hpp"
 #include "dto/device/AllDevicesResponseDTO.hpp"
 #include "dto/device/OneDeviceResponseDTO.hpp"
+#include "dto/device/CompatibleForMergeDeviceDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CDeviceController : public oatpp::web::server::api::ApiController
@@ -44,6 +45,29 @@ public:
 
    ENDPOINT("Get", "/device/{deviceId}", getOneDevice,
             PATH(Int32,deviceId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getCompatibleForMergeDevice)
+   {
+      info->addTag("Device");
+      info->summary = "Get Compatible Device For Merge";
+      std::string des;
+      des.append("Get Compatible Device For Merge\n");
+      des.append("A device is compatible for merge with an other when : \n");
+      des.append("- Plugins are compatible(A device is compatible for merge with an other when pluginId and type are the same) \n");
+      des.append("- They contain at least one compatible keyword. Keywords are compatible when : \n");
+      des.append("- capacityName, accessMode, name, type, units, typeInfo, measure and details are the same");
+      info->description = des.c_str();
+      info->addResponse<Object<CompatibleForMergeDeviceResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("Get", "/device/{deviceId}/compatibleForMergeDevice", getCompatibleForMergeDevice,
+      PATH(Int32, deviceId))
    {
       return createResponse(Status::CODE_200, "OK");
    }

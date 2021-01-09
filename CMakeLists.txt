@@ -64,6 +64,8 @@ add_library(${project_name}-lib
         src/dto/device/AllDevicesDTO.hpp
         src/dto/device/DeviceDataDTO.hpp
         src/dto/device/OneDeviceResponseDTO.hpp
+        src/dto/device/CompatibleForMergeDeviceDTO.hpp
+        src/dto/device/CompatibleDevicesAndKeywordsByDeviceDTO.hpp
         src/dto/DTOs.hpp
 
 )
