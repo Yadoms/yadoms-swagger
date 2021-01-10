@@ -87,7 +87,8 @@ public:
          );
    }
    ENDPOINT("PUT", "/page", updateAllPages,
-      BODY_DTO(oatpp::Vector<Object<PageData>>, pagesData)) {
+      BODY_DTO(oatpp::Vector<Object<PageData>>, pagesData))
+   {
       return createResponse(Status::CODE_200, "OK");
    }
 
@@ -154,8 +155,43 @@ public:
          "application/json"
          );
    }
-   ENDPOINT("POST", "/page/{pageId}", addWidgetForPage,
+   ENDPOINT("POST", "/page/widget/{pageId}", addWidgetForPage,
       BODY_DTO(Object<WidgetData>, widgetData),
+      PATH(Int32, pageId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(replaceAllWidgetsForPage)
+   {
+      info->addTag("Page");
+      info->summary = "Replace All Widgets For a Page";
+      info->description = "Replace All Widgets For a Page";
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("PUT", "/page/{pageId}", replaceAllWidgetsForPage,
+      BODY_DTO(oatpp::Vector<Object<WidgetData>>, widgetsData),
+      PATH(Int32, pageId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(deleteAllWidgetsForPage)
+   {
+      info->addTag("Page");
+      info->summary = "Delete All Widgets For a Page";
+      info->description = "Delete All Widgets For a Page";
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+
+   ENDPOINT("DELETE", "/page/{pageId}", deleteAllWidgetsForPage,
       PATH(Int32, pageId))
    {
       return createResponse(Status::CODE_200, "OK");
