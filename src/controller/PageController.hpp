@@ -7,6 +7,7 @@
 #include "dto/page/PageResponseDTO.hpp"
 #include "dto/shared/WidgetsResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
+#include "dto/shared/EmptyResponseDTO.hpp"
 
 class CPageController : public oatpp::web::server::api::ApiController
 {
@@ -93,15 +94,46 @@ public:
    {
       info->addTag("Page");
       info->summary = "update a Page";
-      info->description = "update All Pages";
+      info->description = "update a Page";
       info->addResponse<Object<PageResponse>>(
          Status::CODE_200,
          "application/json"
          );
    }
    ENDPOINT("PUT", "/page/{pageId}", updatePage,
-      BODY_DTO(Object<PageData>, pageData), 
-      PATH(Int32, pageId))
+            BODY_DTO(Object<PageData>, pageData), 
+            PATH(Int32, pageId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(deletePage)
+   {
+      info->addTag("Page");
+      info->summary = "delete a Page";
+      info->description = "delete a Page";
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("DELETE", "/page/{pageId}", deletePage,
+            PATH(Int32, pageId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(deleteAllPages)
+   {
+      info->addTag("Page");
+      info->summary = "delete all Pages";
+      info->description = "delete all Pages";
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("DELETE", "/page", deleteAllPages)
    {
       return createResponse(Status::CODE_200, "OK");
    }
