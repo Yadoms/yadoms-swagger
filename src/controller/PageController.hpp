@@ -73,6 +73,21 @@ public:
       BODY_DTO(Object<PageData>, page)) {
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(updateAllPages)
+   {
+      info->addTag("Page");
+      info->summary = "update All Pages";
+      info->description = "update All Pages";
+      info->addResponse<Object<PagesResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("PUT", "/page", updateAllPages,
+      BODY_DTO(oatpp::Vector<Object<PageData>>, pagesData)) {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 #include OATPP_CODEGEN_END(ApiController)
 #endif /* PageController_hpp */
