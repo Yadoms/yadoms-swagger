@@ -100,6 +100,7 @@ set(YADOMS_SWAGGER_EVENTLOGGER_DTO_SOURCES
         src/dto/eventLogger/EventsResponseDTO.hpp
         src/dto/eventLogger/EventsDTO.hpp
         src/dto/eventLogger/EventDataDTO.hpp
+        src/dto/eventLogger/LastEventReponseDTO.hpp
 )
 
 set(YADOMS_SWAGGER_DTO_SOURCES
