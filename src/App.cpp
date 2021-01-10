@@ -56,10 +56,7 @@ void run()
    OATPP_LOGI("Yadoms ", "Server running on port %s", connectionProvider->getProperty("port").getData());
 
    /* Run server */
-   // TODO : To be removed in further version
-   std::function<bool()> condition = [] {return true; };
-   server.run(condition);
-   //server.run();
+   server.run();
 }
 
 /**
