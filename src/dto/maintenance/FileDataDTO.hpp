@@ -1,12 +1,12 @@
-﻿#ifndef BackupDataDTO_hpp
-#define BackupDataDTO_hpp
+﻿#ifndef FileDataDTO_hpp
+#define FileDataDTO_hpp
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/Types.hpp"
 #include OATPP_CODEGEN_BEGIN(DTO)
 
-class BackupData : public oatpp::DTO
+class FileData : public oatpp::DTO
 {
-   DTO_INIT(BackupData, DTO);
+   DTO_INIT(FileData, DTO);
    DTO_FIELD(Int32, size);
    DTO_FIELD(String, modificationDate);
    DTO_FIELD(String, path);
@@ -16,7 +16,7 @@ class BackupData : public oatpp::DTO
 
 #include OATPP_CODEGEN_END(DTO)
 
-#endif /* BackupDataDTO_hpp */
+#endif /* FileDataDTO_hpp */
 
 
 

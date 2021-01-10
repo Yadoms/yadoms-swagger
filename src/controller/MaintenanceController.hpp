@@ -8,6 +8,7 @@
 #include "dto/shared/EmptyResponseDTO.hpp"
 #include "dto/maintenance/TaskIdResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
+#include "dto/maintenance/LogsResponseDTO.hpp"
 
 class CMaintenanceController : public oatpp::web::server::api::ApiController
 {
@@ -100,6 +101,20 @@ public:
          );
    }
    ENDPOINT("POST", "/maintenance/packlogs", startPackLogs) {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getLogs)
+   {
+      info->addTag("Maintenance");
+      info->summary = "get logs";
+      info->description = "get logss";
+      info->addResponse<Object<LogsResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("GET", "/maintenance/logs", getLogs) {
       return createResponse(Status::CODE_200, "OK");
    }
 };

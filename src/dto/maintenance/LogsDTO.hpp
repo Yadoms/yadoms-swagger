@@ -1,19 +1,20 @@
-﻿#ifndef BackupsDTO_hpp
-#define BackupsDTO_hpp
+﻿#ifndef LogsDTO_hpp
+#define LogsDTO_hpp
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/Types.hpp"
 #include "dto/maintenance/FileDataDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(DTO)
 
-class Backups : public oatpp::DTO
+class Logs : public oatpp::DTO
 {
-   DTO_INIT(Backups, DTO);
-   DTO_FIELD(Vector<Object<FileData>>, backups);
+   DTO_INIT(Logs, DTO);
+   DTO_FIELD(Object<FileData>, logs);
 };
 
 #include OATPP_CODEGEN_END(DTO)
 
-#endif /* BackupsDTO_hpp */
+#endif /* LogsDTO_hpp */
+
 
 
 
