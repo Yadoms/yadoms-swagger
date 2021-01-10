@@ -45,6 +45,45 @@ public:
    {
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(getEventsFrom)
+   {
+      info->addTag("Event Logger");
+      info->summary = "Get the events history from the eventId";
+      info->description = "Get the events history from the eventId";
+      info->addResponse<Object<EventsResponse>>(
+         Status::CODE_200,
+         "application/json");
+   }
+
+   ENDPOINT("Get", "/EventLogger/from/{fromEventId}", getEventsFrom,
+      PATH(Int32, fromEventId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getEventsRange)
+   {
+      info->addTag("Event Logger");
+      info->summary = "Get events range";
+      std::string description;
+      description.append("Get the events history in a range, from 'offset', return 'count' elements");
+      description.append("\n");
+      description.append("- offset : The index (reverse, last events first) of the first row");
+      description.append("\n");
+      description.append("- count : The row count");
+      info->description = description.c_str();
+      info->addResponse<Object<EventsResponse>>(
+         Status::CODE_200,
+         "application/json");
+   }
+
+   ENDPOINT("Get", "/EventLogger/limit/{offset}/{count}", getEventsRange,
+      PATH(Int32, offset),
+      PATH(Int32, count))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 
 #include OATPP_CODEGEN_END(ApiController)
