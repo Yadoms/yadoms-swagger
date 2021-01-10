@@ -5,6 +5,7 @@
 #include "oatpp/core/macro/component.hpp"
 #include "dto/eventLogger/EventsResponseDTO.hpp"
 #include "dto/eventLogger/LastEventReponseDTO.hpp"
+#include "dto/shared/EmptyResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CEventLoggerController : public oatpp::web::server::api::ApiController
@@ -81,6 +82,22 @@ public:
    ENDPOINT("Get", "/EventLogger/limit/{offset}/{count}", getEventsRange,
       PATH(Int32, offset),
       PATH(Int32, count))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(addEvent)
+   {
+      info->addTag("Event Logger");
+      info->summary = "Add event";
+      info->description = "Add new event log entry";
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json");
+   }
+
+   ENDPOINT("POST", "/EventLogger", addEvent, 
+            BODY_DTO(Object<EventData>, eventData))
    {
       return createResponse(Status::CODE_200, "OK");
    }
