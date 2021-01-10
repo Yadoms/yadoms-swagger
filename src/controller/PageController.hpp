@@ -58,6 +58,21 @@ public:
       PATH(Int32, pageId)) {
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(addPage)
+   {
+      info->addTag("Page");
+      info->summary = "Add page";
+      info->description = "Add new page ";
+      info->addResponse<Object<PageResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("POST", "/page/", addPage,
+      BODY_DTO(Object<PageData>, page)) {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 #include OATPP_CODEGEN_END(ApiController)
 #endif /* PageController_hpp */
