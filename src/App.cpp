@@ -6,6 +6,7 @@
 #include "controller/AutomationController.hpp"
 #include "controller/ConfigurationController.hpp"
 #include "controller/DeviceController.hpp"
+#include "controller/EventLoggerController.hpp"
 
 void run()
 {
@@ -29,6 +30,9 @@ void run()
    auto deviceController = std::make_shared<CDeviceController>();
    deviceController->addEndpointsToRouter(router);
 
+   auto eventLoggerController = std::make_shared<CEventLoggerController>();
+   eventLoggerController->addEndpointsToRouter(router);
+   
    /* Get connection handler component */
    OATPP_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, connectionHandler);
 
@@ -40,6 +44,7 @@ void run()
    docEndpoints->pushBackAll(automationController->getEndpoints());
    docEndpoints->pushBackAll(configurationController->getEndpoints());
    docEndpoints->pushBackAll(deviceController->getEndpoints());
+   docEndpoints->pushBackAll(eventLoggerController->getEndpoints());
 
    auto swaggerController = oatpp::swagger::Controller::createShared(docEndpoints);
    swaggerController->addEndpointsToRouter(router);

@@ -15,6 +15,8 @@ set(YADOMS_SWAGGER_CONTROLLER_SOURCES
         src/controller/ConfigurationController.cpp
         src/controller/DeviceController.hpp
         src/controller/DeviceController.cpp
+        src/controller/EventLoggerController.hpp
+        src/controller/EventLoggerController.cpp
 )
 set(YADOMS_SWAGGER_SHARED_DTO_SOURCES 
         src/dto/shared/CommonsDataDTO.hpp
@@ -25,6 +27,7 @@ set(YADOMS_SWAGGER_SHARED_DTO_SOURCES
         src/dto/shared/MeasureTypeDTO.hpp
         src/dto/shared/HistoryDepthDTO.hpp
         src/dto/shared/RemoveDeviceDTO.hpp
+        src/dto/shared/SystemEventCodeDTO.hpp
 )
 set(YADOMS_SWAGGER_ACQUISITION_DTO_SOURCES 
         src/dto/acquisition/KeywordsLastDataResponseDTO.hpp
@@ -93,12 +96,19 @@ set(YADOMS_SWAGGER_DEVICE_DTO_SOURCES
         src/dto/device/BlacklistDTO.hpp
 )
 
+set(YADOMS_SWAGGER_EVENTLOGGER_DTO_SOURCES
+        src/dto/eventLogger/EventsResponseDTO.hpp
+        src/dto/eventLogger/EventsDTO.hpp
+        src/dto/eventLogger/EventDataDTO.hpp
+)
+
 set(YADOMS_SWAGGER_DTO_SOURCES
         ${YADOMS_SWAGGER_SHARED_DTO_SOURCES}
         ${YADOMS_SWAGGER_ACQUISITION_DTO_SOURCES}
         ${YADOMS_SWAGGER_AUTOMATION_DTO_SOURCES}
         ${YADOMS_SWAGGER_CONFIGURATION_DTO_SOURCES}
         ${YADOMS_SWAGGER_DEVICE_DTO_SOURCES}
+        ${YADOMS_SWAGGER_EVENTLOGGER_DTO_SOURCES}
 )
 
 set(YADOMS_SWAGGER_SOURCES
@@ -113,9 +123,12 @@ source_group(sources\\dto\\acquisition dto/acquisition/*.*)
 source_group(sources\\dto\\automation dto/automation/*.*)
 source_group(sources\\dto\\configuration dto/configuration/*.*)
 source_group(sources\\dto\\device dto/device/*.*)
+source_group(sources\\dto\\eventLogger dto/eventLogger/*.*)
 
  # Allow big object
-add_definitions(/bigobj)
+if (MSVC)
+   add_definitions(/bigobj)
+endif()
 
 add_library(${project_name}-lib
         ${YADOMS_SWAGGER_SOURCES}
