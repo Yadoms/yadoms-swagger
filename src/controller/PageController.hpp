@@ -5,6 +5,7 @@
 #include "oatpp/core/macro/component.hpp"
 #include "dto/page/PagesResponseDTO.hpp"
 #include "dto/page/PageResponseDTO.hpp"
+#include "dto/shared/WidgetsResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CPageController : public oatpp::web::server::api::ApiController
@@ -40,6 +41,21 @@ public:
    }
    ENDPOINT("GET", "/page/{pageId}", getOnePage, 
             PATH(Int32, pageId)) {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getPageWidget)
+   {
+      info->addTag("Page");
+      info->summary = "Get page widget";
+      info->description = "List all widgets instanciated in a page";
+      info->addResponse<Object<WidgetsResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("GET", "/page/{pageId}/widget", getPageWidget,
+      PATH(Int32, pageId)) {
       return createResponse(Status::CODE_200, "OK");
    }
 };

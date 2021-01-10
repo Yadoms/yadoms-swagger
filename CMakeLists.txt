@@ -39,6 +39,11 @@ set(YADOMS_SWAGGER_SHARED_DTO_SOURCES
         src/dto/shared/RemoveDeviceDTO.hpp
         src/dto/shared/SystemEventCodeDTO.hpp
         src/dto/shared/DatabaseTypeDTO.hpp
+        src/dto/shared/WidgetDataDTO.hpp
+        src/dto/shared/WidgetsDTO.hpp
+        src/dto/shared/WidgetConfigurationDTO.hpp
+        src/dto/shared/DeviceConfigurationDTO.hpp
+        src/dto/shared/WidgetsResponseDTO.hpp
 )
 set(YADOMS_SWAGGER_ACQUISITION_DTO_SOURCES 
         src/dto/acquisition/KeywordsLastDataResponseDTO.hpp
