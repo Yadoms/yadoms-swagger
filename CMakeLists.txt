@@ -7,6 +7,8 @@ project(${project_name})
 set(CMAKE_CXX_STANDARD 11)
 
 set(YADOMS_SWAGGER_CONTROLLER_SOURCES
+        src/controller/EmptyController.hpp
+        src/controller/EmptyController.cpp
         src/controller/AcquisitionController.hpp
         src/controller/AcquisitionController.cpp
         src/controller/AutomationController.hpp
@@ -17,7 +19,13 @@ set(YADOMS_SWAGGER_CONTROLLER_SOURCES
         src/controller/DeviceController.cpp
         src/controller/EventLoggerController.hpp
         src/controller/EventLoggerController.cpp
+        src/controller/MaintenanceController.cpp
+        src/controller/MaintenanceController.hpp
 )
+set(YADOMS_SWAGGER_EMPTY_DTO_SOURCES
+        src/dto/empty/EmptyResponseDTO.hpp
+)
+
 set(YADOMS_SWAGGER_SHARED_DTO_SOURCES 
         src/dto/shared/CommonsDataDTO.hpp
         src/dto/shared/EmptyResponseDTO.hpp
@@ -28,6 +36,7 @@ set(YADOMS_SWAGGER_SHARED_DTO_SOURCES
         src/dto/shared/HistoryDepthDTO.hpp
         src/dto/shared/RemoveDeviceDTO.hpp
         src/dto/shared/SystemEventCodeDTO.hpp
+        src/dto/shared/DatabaseTypeDTO.hpp
 )
 set(YADOMS_SWAGGER_ACQUISITION_DTO_SOURCES 
         src/dto/acquisition/KeywordsLastDataResponseDTO.hpp
@@ -103,13 +112,20 @@ set(YADOMS_SWAGGER_EVENTLOGGER_DTO_SOURCES
         src/dto/eventLogger/LastEventReponseDTO.hpp
 )
 
+set(YADOMS_SWAGGER_MAINTENANCE_DTO_SOURCES
+        src/dto/maintenance/DatabaseInformationResponseDTO.hpp
+        src/dto/maintenance/DatabaseInformationDTO.hpp
+)
+
 set(YADOMS_SWAGGER_DTO_SOURCES
+        ${YADOMS_SWAGGER_EMPTY_DTO_SOURCES}
         ${YADOMS_SWAGGER_SHARED_DTO_SOURCES}
         ${YADOMS_SWAGGER_ACQUISITION_DTO_SOURCES}
         ${YADOMS_SWAGGER_AUTOMATION_DTO_SOURCES}
         ${YADOMS_SWAGGER_CONFIGURATION_DTO_SOURCES}
         ${YADOMS_SWAGGER_DEVICE_DTO_SOURCES}
         ${YADOMS_SWAGGER_EVENTLOGGER_DTO_SOURCES}
+        ${YADOMS_SWAGGER_MAINTENANCE_DTO_SOURCES}
 )
 
 set(YADOMS_SWAGGER_SOURCES
@@ -119,12 +135,14 @@ set(YADOMS_SWAGGER_SOURCES
 
 )
 source_group(sources\\controller\\ controller/*.*)
+source_group(sources\\dto\\empty dto/empty/*.*)
 source_group(sources\\dto\\shared dto/shared/*.*)
 source_group(sources\\dto\\acquisition dto/acquisition/*.*)
 source_group(sources\\dto\\automation dto/automation/*.*)
 source_group(sources\\dto\\configuration dto/configuration/*.*)
 source_group(sources\\dto\\device dto/device/*.*)
 source_group(sources\\dto\\eventLogger dto/eventLogger/*.*)
+source_group(sources\\dto\\maintenance dto/maintenance/*.*)
 
  # Allow big object
 if (MSVC)

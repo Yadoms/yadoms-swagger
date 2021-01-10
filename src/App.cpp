@@ -7,6 +7,7 @@
 #include "controller/ConfigurationController.hpp"
 #include "controller/DeviceController.hpp"
 #include "controller/EventLoggerController.hpp"
+#include "controller/MaintenanceController.hpp"
 
 void run()
 {
@@ -17,7 +18,9 @@ void run()
    OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router);
 
    /* Create Controllers and add all of its endpoints to router */
-
+   // You can copy emptyController
+   //auto emptyController = std::make_shared<CEmptyController>();
+   //emptyController->addEndpointsToRouter(router);
    auto acquisitionController = std::make_shared<CAcquisitionController>();
    acquisitionController->addEndpointsToRouter(router);
 
@@ -32,7 +35,9 @@ void run()
 
    auto eventLoggerController = std::make_shared<CEventLoggerController>();
    eventLoggerController->addEndpointsToRouter(router);
-   
+
+   auto maintenanceController = std::make_shared<CMaintenanceController>();
+   maintenanceController->addEndpointsToRouter(router);
    /* Get connection handler component */
    OATPP_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, connectionHandler);
 
@@ -40,11 +45,13 @@ void run()
    OATPP_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, connectionProvider);
 
    auto docEndpoints = oatpp::swagger::Controller::Endpoints::createShared();
+   //docEndpoints->pushBackAll(emptyController->getEndpoints());
    docEndpoints->pushBackAll(acquisitionController->getEndpoints());
    docEndpoints->pushBackAll(automationController->getEndpoints());
    docEndpoints->pushBackAll(configurationController->getEndpoints());
    docEndpoints->pushBackAll(deviceController->getEndpoints());
    docEndpoints->pushBackAll(eventLoggerController->getEndpoints());
+   docEndpoints->pushBackAll(maintenanceController->getEndpoints());
 
    auto swaggerController = oatpp::swagger::Controller::createShared(docEndpoints);
    swaggerController->addEndpointsToRouter(router);
