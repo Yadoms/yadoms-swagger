@@ -6,8 +6,9 @@
 #include "dto/page/PagesResponseDTO.hpp"
 #include "dto/page/PageResponseDTO.hpp"
 #include "dto/shared/WidgetsResponseDTO.hpp"
-#include OATPP_CODEGEN_BEGIN(ApiController)
 #include "dto/shared/EmptyResponseDTO.hpp"
+#include "dto/shared/WidgetResponseDTO.hpp"
+#include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CPageController : public oatpp::web::server::api::ApiController
 {
@@ -70,7 +71,7 @@ public:
          "application/json"
          );
    }
-   ENDPOINT("POST", "/page/", addPage,
+   ENDPOINT("POST", "/page", addPage,
       BODY_DTO(Object<PageData>, page)) {
       return createResponse(Status::CODE_200, "OK");
    }
@@ -134,6 +135,28 @@ public:
          );
    }
    ENDPOINT("DELETE", "/page", deleteAllPages)
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+   // TODO : WARNING : PageId is not used, pageId is injected by the body
+   ENDPOINT_INFO(addWidgetForPage)
+   {
+      info->addTag("Page");
+      info->summary = "Add new widget to a page";
+      std::string description;
+      description.append("Add new widget to a page ");
+      description.append("\n");
+      description.append(" * configuration Field is a container (Multiple configuration format)");
+
+      info->description = description.c_str();
+      info->addResponse<Object<WidgetResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("POST", "/page/{pageId}", addWidgetForPage,
+      BODY_DTO(Object<WidgetData>, widgetData),
+      PATH(Int32, pageId))
    {
       return createResponse(Status::CODE_200, "OK");
    }
