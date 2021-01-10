@@ -21,6 +21,8 @@ set(YADOMS_SWAGGER_CONTROLLER_SOURCES
         src/controller/EventLoggerController.cpp
         src/controller/MaintenanceController.cpp
         src/controller/MaintenanceController.hpp
+        src/controller/PageController.cpp
+        src/controller/PageController.hpp
 )
 set(YADOMS_SWAGGER_EMPTY_DTO_SOURCES
         src/dto/empty/EmptyResponseDTO.hpp
@@ -126,6 +128,12 @@ set(YADOMS_SWAGGER_MAINTENANCE_DTO_SOURCES
         src/dto/maintenance/ExportDataResponseDTO.hpp
 )
 
+set(YADOMS_SWAGGER_PAGE_DTO_SOURCES
+        src/dto/page/PagesResponseDTO.hpp
+        src/dto/page/PagesDTO.hpp
+        src/dto/page/PageDataDTO
+)
+
 set(YADOMS_SWAGGER_DTO_SOURCES
         ${YADOMS_SWAGGER_EMPTY_DTO_SOURCES}
         ${YADOMS_SWAGGER_SHARED_DTO_SOURCES}
@@ -135,6 +143,7 @@ set(YADOMS_SWAGGER_DTO_SOURCES
         ${YADOMS_SWAGGER_DEVICE_DTO_SOURCES}
         ${YADOMS_SWAGGER_EVENTLOGGER_DTO_SOURCES}
         ${YADOMS_SWAGGER_MAINTENANCE_DTO_SOURCES}
+        ${YADOMS_SWAGGER_PAGE_DTO_SOURCES}
 )
 
 set(YADOMS_SWAGGER_SOURCES
@@ -152,6 +161,7 @@ source_group(sources\\dto\\configuration dto/configuration/*.*)
 source_group(sources\\dto\\device dto/device/*.*)
 source_group(sources\\dto\\eventLogger dto/eventLogger/*.*)
 source_group(sources\\dto\\maintenance dto/maintenance/*.*)
+source_group(sources\\dto\\page dto/page/*.*)
 
  # Allow big object
 if (MSVC)

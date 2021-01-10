@@ -8,6 +8,7 @@
 #include "controller/DeviceController.hpp"
 #include "controller/EventLoggerController.hpp"
 #include "controller/MaintenanceController.hpp"
+#include "controller/PageController.hpp"
 
 void run()
 {
@@ -38,6 +39,10 @@ void run()
 
    auto maintenanceController = std::make_shared<CMaintenanceController>();
    maintenanceController->addEndpointsToRouter(router);
+
+   auto pageController = std::make_shared<CPageController>();
+   pageController->addEndpointsToRouter(router);
+   
    /* Get connection handler component */
    OATPP_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, connectionHandler);
 
@@ -52,6 +57,7 @@ void run()
    docEndpoints->pushBackAll(deviceController->getEndpoints());
    docEndpoints->pushBackAll(eventLoggerController->getEndpoints());
    docEndpoints->pushBackAll(maintenanceController->getEndpoints());
+   docEndpoints->pushBackAll(pageController->getEndpoints());
 
    auto swaggerController = oatpp::swagger::Controller::createShared(docEndpoints);
    swaggerController->addEndpointsToRouter(router);
