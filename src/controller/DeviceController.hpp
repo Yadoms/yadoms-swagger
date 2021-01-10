@@ -359,13 +359,13 @@ public:
    {
       return createResponse(Status::CODE_200, "OK");
    }
-   // TODO : 
+
    ENDPOINT_INFO(sendKeywordCommand)
    {
       info->addTag("Device");
       info->summary = "send Keyword Command";
       info->description = "Send a command to a keyword";
-      info->addResponse<Object<KeywordsResponse>>(
+      info->addResponse< Object<EmptyResponse>>(
          Status::CODE_200,
          "application/json"
          );
@@ -373,7 +373,7 @@ public:
 
    ENDPOINT("POST", "/device/keyword/{keywordId}/command", sendKeywordCommand,
       PATH(Int32, keywordId),
-      BODY_DTO(Object<Blacklist>, blacklist))
+      BODY_DTO(Fields<String>, command))
    {
       return createResponse(Status::CODE_200, "OK");
    }
