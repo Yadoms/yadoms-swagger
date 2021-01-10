@@ -16,7 +16,7 @@ class WidgetData : public oatpp::DTO
    DTO_FIELD(Int32, sizeY);
    DTO_FIELD(Int32, position);
    DTO_FIELD(String, title);
-   DTO_FIELD(Object<WidgetConfiguration>, configuration);
+   DTO_FIELD(Fields<String>, configuration) = {};
 };
 
 #include OATPP_CODEGEN_END(DTO)

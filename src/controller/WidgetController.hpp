@@ -59,6 +59,22 @@ public:
    {
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(addWidget)
+   {
+      info->addTag("Widget");
+      info->summary = "Add new widget ";
+      info->description = "Add new widget ";
+      info->addResponse<Object<WidgetResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("POST", "/widget", addWidget, 
+            BODY_DTO(Object<WidgetData>, widgetData))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 #include OATPP_CODEGEN_END(ApiController)
 #endif /* WidgetController_hpp */
