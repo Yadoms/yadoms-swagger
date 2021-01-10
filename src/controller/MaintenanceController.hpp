@@ -74,6 +74,20 @@ public:
    {
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(deleteAllBackups)
+   {
+      info->addTag("Maintenance");
+      info->summary = "delete all Backups";
+      info->description = "delete all Backups";
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("DELETE", "/maintenance/backup", deleteAllBackups) {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 #include OATPP_CODEGEN_END(ApiController)
 #endif /* MaintenanceController_hpp */
