@@ -118,6 +118,8 @@ set(YADOMS_SWAGGER_MAINTENANCE_DTO_SOURCES
         src/dto/maintenance/BackupsResponseDTO.hpp
         src/dto/maintenance/BackupsDTO.hpp
         src/dto/maintenance/BackupDataDTO.hpp
+        src/dto/maintenance/TaskIdResponseDTO.hpp
+        src/dto/maintenance/TaskIdDTO.hpp
 )
 
 set(YADOMS_SWAGGER_DTO_SOURCES

@@ -5,6 +5,8 @@
 #include "oatpp/core/macro/component.hpp"
 #include "dto/maintenance/DatabaseInformationResponseDTO.hpp"
 #include "dto/maintenance/BackupsResponseDTO.hpp"
+#include "dto/shared/EmptyResponseDTO.hpp"
+#include "dto/maintenance/TaskIdResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CMaintenanceController : public oatpp::web::server::api::ApiController
@@ -40,6 +42,36 @@ public:
          );
    }
    ENDPOINT("GET", "/maintenance/backup", getBackups) {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(startBackup)
+   {
+      info->addTag("Maintenance");
+      info->summary = "start a Backup";
+      info->description = "start a Backup";
+      info->addResponse<Object<TaskIdResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("POST", "/maintenance/backup", startBackup) {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(deleteBackup)
+   {
+      info->addTag("Maintenance");
+      info->summary = "delete a Backup";
+      info->description = "delete a Backup";
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("DELETE", "/maintenance/backup/{urlToDelete}", deleteBackup, 
+            PATH(String, urlToDelete))
+   {
       return createResponse(Status::CODE_200, "OK");
    }
 };
