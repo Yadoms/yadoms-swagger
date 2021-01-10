@@ -88,6 +88,20 @@ public:
    ENDPOINT("DELETE", "/maintenance/backup", deleteAllBackups) {
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(startPackLogs)
+   {
+      info->addTag("Maintenance");
+      info->summary = "start a Logs packing task";
+      info->description = "start a Logs packing task";
+      info->addResponse<Object<TaskIdResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("POST", "/maintenance/packlogs", startPackLogs) {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 #include OATPP_CODEGEN_END(ApiController)
 #endif /* MaintenanceController_hpp */
