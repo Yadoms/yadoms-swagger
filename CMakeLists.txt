@@ -131,7 +131,8 @@ set(YADOMS_SWAGGER_MAINTENANCE_DTO_SOURCES
 set(YADOMS_SWAGGER_PAGE_DTO_SOURCES
         src/dto/page/PagesResponseDTO.hpp
         src/dto/page/PagesDTO.hpp
-        src/dto/page/PageDataDTO
+        src/dto/page/PageDataDTO.hpp
+        src/dto/page/PageResponseDTO.hpp
 )
 
 set(YADOMS_SWAGGER_DTO_SOURCES
