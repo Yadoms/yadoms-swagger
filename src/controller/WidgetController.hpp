@@ -7,6 +7,7 @@
 #include "dto/shared/WidgetResponseDTO.hpp"
 #include "dto/widget/PackageResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
+#include "dto/shared/EmptyResponseDTO.hpp"
 
 class CWidgetController : public oatpp::web::server::api::ApiController
 {
@@ -88,6 +89,37 @@ public:
    }
    ENDPOINT("PUT", "/widget/{widgetId}", updateOneWidget,
             BODY_DTO(Object<WidgetData>, widgetData), 
+            PATH(Int32, widgetId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(deleteAllWidgets)
+   {
+      info->addTag("Widget");
+      info->summary = "Delete all widgets";
+      info->description = "Delete all widgets";
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("DELETE", "/widget", deleteAllWidgets)
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(deleteOneWidget)
+   {
+      info->addTag("Widget");
+      info->summary = "Delete one widget";
+      info->description = "Delete one widget";
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("DELETE", "/widget/{widgetId}", deleteOneWidget, 
             PATH(Int32, widgetId))
    {
       return createResponse(Status::CODE_200, "OK");
