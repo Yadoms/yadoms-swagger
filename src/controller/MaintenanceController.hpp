@@ -7,8 +7,9 @@
 #include "dto/maintenance/BackupsResponseDTO.hpp"
 #include "dto/shared/EmptyResponseDTO.hpp"
 #include "dto/maintenance/TaskIdResponseDTO.hpp"
-#include OATPP_CODEGEN_BEGIN(ApiController)
 #include "dto/maintenance/LogsResponseDTO.hpp"
+#include "dto/maintenance/ExportDataResponseDTO.hpp"
+#include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CMaintenanceController : public oatpp::web::server::api::ApiController
 {
@@ -108,13 +109,57 @@ public:
    {
       info->addTag("Maintenance");
       info->summary = "get logs";
-      info->description = "get logss";
+      info->description = "get logs";
       info->addResponse<Object<LogsResponse>>(
          Status::CODE_200,
          "application/json"
          );
    }
    ENDPOINT("GET", "/maintenance/logs", getLogs) {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(deleteAllLogs)
+   {
+      info->addTag("Maintenance");
+      info->summary = "Delete all logs";
+      info->description = "Delete all logs";
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("DELETE", "/maintenance/logs", deleteAllLogs) {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(startExportData)
+   {
+      info->addTag("Maintenance");
+      info->summary = "start Exporting data task";
+      info->description = "Exporting data task";
+      info->addResponse<Object<TaskIdResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("POST", "/maintenance/startExportData/{keywordId}", startExportData, 
+            PATH(String, keywordId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getExportData)
+   {
+      info->addTag("Maintenance");
+      info->summary = "get exported data";
+      info->description = "get exported data";
+      info->addResponse<Object<ExportDataResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("GET", "/maintenance/exportData", getExportData) {
       return createResponse(Status::CODE_200, "OK");
    }
 };
