@@ -10,6 +10,7 @@
 #include "controller/MaintenanceController.hpp"
 #include "controller/PageController.hpp"
 #include "controller/WidgetController.hpp"
+#include "controller/PluginController.hpp"
 
 void run()
 {
@@ -46,6 +47,11 @@ void run()
 
    auto widgetController = std::make_shared<CWidgetController>();
    widgetController->addEndpointsToRouter(router);
+
+   auto pluginController = std::make_shared<CPluginController>();
+   pluginController->addEndpointsToRouter(router);
+
+   
    /* Get connection handler component */
    OATPP_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, connectionHandler);
 
@@ -62,6 +68,7 @@ void run()
    docEndpoints->pushBackAll(maintenanceController->getEndpoints());
    docEndpoints->pushBackAll(pageController->getEndpoints());
    docEndpoints->pushBackAll(widgetController->getEndpoints());
+   docEndpoints->pushBackAll(pluginController->getEndpoints());
 
    auto swaggerController = oatpp::swagger::Controller::createShared(docEndpoints);
    swaggerController->addEndpointsToRouter(router);
