@@ -15,6 +15,7 @@
 #include "dto/plugin/InstanceLogResponseDTO.hpp"
 #include "dto/shared/EmptyResponseDTO.hpp"
 #include "dto/plugin/InstanceRunningResponseDTO.hpp"
+#include "dto/plugin/PluginDeviceBodyDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CPluginController : public oatpp::web::server::api::ApiController
@@ -262,6 +263,23 @@ public:
          );
    }
    ENDPOINT("POST", "/plugin", createPlugin, BODY_DTO(Object<PluginInstance>, pluginInstance))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(createDevice)
+   {
+      info->addTag("Plugin");
+      info->summary = "Create a device";
+      info->description = "Create a device";
+      info->addResponse<Object<OneDeviceResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("POST", "/plugin/{pluginId}/createDevice", 
+            createDevice,
+            BODY_DTO(Object<PluginDeviceBody>, plugindeviceBody))
    {
       return createResponse(Status::CODE_200, "OK");
    }

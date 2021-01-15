@@ -180,6 +180,7 @@ set(YADOMS_SWAGGER_PLUGIN_DTO_SOURCES
         src/dto/plugin/PluginDevicesResponseDTO.hpp
         src/dto/plugin/InstanceLogResponseDTO.hpp
         src/dto/plugin/InstanceRunningResponseDTO.hpp
+        src/dto/plugin/PluginDeviceBodyDTO.hpp
 )
 
 set(YADOMS_SWAGGER_DTO_SOURCES
