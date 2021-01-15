@@ -49,6 +49,10 @@ set(YADOMS_SWAGGER_SHARED_DTO_SOURCES
         src/dto/shared/DeviceConfigurationDTO.hpp
         src/dto/shared/WidgetsResponseDTO.hpp
         src/dto/shared/WidgetResponseDTO.hpp
+        src/dto/shared/DependenciesDTO.hpp
+        src/dto/shared/MinimumVersionDTO.hpp
+        src/dto/shared/CoordinatesDTO.hpp
+        src/dto/shared/DimensionsDTO.hpp
 )
 set(YADOMS_SWAGGER_ACQUISITION_DTO_SOURCES 
         src/dto/acquisition/KeywordsLastDataResponseDTO.hpp
@@ -149,15 +153,16 @@ set(YADOMS_SWAGGER_WIDGET_DTO_SOURCES
         src/dto/widget/PackageResponseDTO.hpp
         src/dto/widget/PackageDataDTO.hpp
         src/dto/widget/PackagesDTO.hpp
-        src/dto/widget/DependenciesDTO.hpp
-        src/dto/widget/MinimumVersionDTO.hpp
-        src/dto/widget/CoordinatesDTO.hpp
-        src/dto/widget/DimensionsDTO.hpp
+
 )
 
 set(YADOMS_SWAGGER_PLUGIN_DTO_SOURCES
-        src/dto/plugin/PluginsResponseDTO.hpp
+        src/dto/plugin/AvailablePluginsResponseDTO.hpp
         src/dto/plugin/PluginsDTO.hpp
+        src/dto/plugin/PluginDataDTO.hpp
+        src/dto/plugin/AvailablePluginsParameterizedResponseDTO.hpp
+        src/dto/plugin/PluginsParameterizedDTO.hpp
+        src/dto/plugin/FieldsBodyDTO.hpp
 )
 
 set(YADOMS_SWAGGER_DTO_SOURCES

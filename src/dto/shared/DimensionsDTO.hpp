@@ -3,7 +3,7 @@
 
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/Types.hpp"
-#include "dto/widget/CoordinatesDTO.hpp"
+#include "dto/shared/CoordinatesDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(DTO)
 
 class Dimensions : public oatpp::DTO

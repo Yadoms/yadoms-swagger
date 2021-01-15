@@ -3,7 +3,7 @@
 
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/Types.hpp"
-#include "dto/widget/MinimumVersionDTO.hpp"
+#include "dto/shared/MinimumVersionDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(DTO)
 
 class Dependencies : public oatpp::DTO
