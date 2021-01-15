@@ -10,9 +10,10 @@
 #include "dto/plugin/PluginsInstanceResponseDTO.hpp"
 #include "dto/plugin/PluginsInstanceWithStateResponseDTO.hpp"
 #include "dto/plugin/OnePluginResponseDTO.hpp"
-#include OATPP_CODEGEN_BEGIN(ApiController)
 #include "dto/plugin/PluginStateResponseDTO.hpp"
 #include "dto/plugin/PluginDevicesResponseDTO.hpp"
+#include "dto/plugin/InstanceLogResponseDTO.hpp"
+#include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CPluginController : public oatpp::web::server::api::ApiController
 {
@@ -159,6 +160,22 @@ public:
          );
    }
    ENDPOINT("GET", "/plugin/{pluginId}/devices", getPluginDevices,
+      PATH(Int32, pluginId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getInstanceLog)
+   {
+      info->addTag("Plugin");
+      info->summary = "Get plugin instance log";
+      info->description = "Get the log of a plugin instance";
+      info->addResponse<Object<InstanceLogResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("GET", "/plugin/{pluginId}/log", getInstanceLog,
       PATH(Int32, pluginId))
    {
       return createResponse(Status::CODE_200, "OK");
