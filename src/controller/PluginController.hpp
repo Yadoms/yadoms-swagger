@@ -323,9 +323,36 @@ public:
    ENDPOINT("POST", "/plugin/{pluginId}/extraQuery/{extraQueryName}", 
       sendExtraQuery,
       PATH(Int32, pluginId),
-      PATH(Int32, extraQueryId))
+      PATH(String, extraQueryName))
    {
      
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(sendDeviceExtraQuery)
+   {
+      info->addTag("Plugin");
+      info->summary = "Send a device extra command";
+      info->description = "Send a device extra command";
+      info->body.description = "Extra Query Data";
+      info->body.required = false;
+      info->addConsumes<Object<EmptyObject>>(
+         "application/json",
+         ""
+         );
+
+      info->addResponse<Object<TaskIdResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("POST", "/plugin/{pluginId}/deviceExtraQuery/{deviceId}/{extraQueryName}",
+      sendDeviceExtraQuery,
+      PATH(Int32, pluginId),
+      PATH(Int32, deviceId),
+      PATH(String, extraQueryName))
+   {
+
       return createResponse(Status::CODE_200, "OK");
    }
 };
