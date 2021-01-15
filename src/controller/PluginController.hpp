@@ -8,6 +8,7 @@
 #include "dto/plugin/FieldsBodyDTO.hpp"
 #include "dto/plugin/AvailablePluginsWithPackageResponseDTO.hpp"
 #include "dto/plugin/PluginsInstanceResponseDTO.hpp"
+#include "dto/plugin/PluginsInstanceWithStateResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CPluginController : public oatpp::web::server::api::ApiController
@@ -81,6 +82,20 @@ public:
          );
    }
    ENDPOINT("GET", "/plugin/instance", getAllPluginsInstance) {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getAllPluginsInstanceWithState)
+   {
+      info->addTag("Plugin");
+      info->summary = "Get All Plugins Instance With State";
+      info->description = "Get the plugin instances list with state";
+      info->addResponse<Object<PluginsInstanceWithStateResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("GET", "/plugin/instanceWithState", getAllPluginsInstanceWithState) {
       return createResponse(Status::CODE_200, "OK");
    }
 };
