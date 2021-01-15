@@ -283,6 +283,23 @@ public:
    {
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(updatePlugin)
+   {
+      info->addTag("Plugin");
+      info->summary = "Update a plugin Instance";
+      info->description = "Update plugin instance informations";
+      info->addResponse<Object<OnePluginResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("PUT", "/plugin/{pluginId}", updatePlugin,
+      PATH(Int32, pluginId), 
+      BODY_DTO(Object<PluginInstance>, pluginInstanceBody))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 #include OATPP_CODEGEN_END(ApiController)
 #endif /* PluginController_hpp */
