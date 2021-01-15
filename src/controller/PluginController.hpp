@@ -98,6 +98,20 @@ public:
    ENDPOINT("GET", "/plugin/instanceWithState", getAllPluginsInstanceWithState) {
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(getAllPluginsInstanceForManualDeviceCreation)
+   {
+      info->addTag("Plugin");
+      info->summary = "Get All Manual Device Creation Plugins Instance";
+      info->description = "Get All Manual Device Creation Plugins Instance";
+      info->addResponse<Object<PluginsInstanceResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("GET", "/plugin/instance/handleManuallyDeviceCreation", getAllPluginsInstanceForManualDeviceCreation) {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 #include OATPP_CODEGEN_END(ApiController)
 #endif /* PluginController_hpp */
