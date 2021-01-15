@@ -10,7 +10,7 @@
 class PluginStateResponse : public CommonsData
 {
    DTO_INIT(PluginStateResponse, CommonsData);
-   DTO_FIELD(Fields<Enum<PluginState>>, data) = oatpp::data::mapping::type::PairList<String, Enum<PluginState>>({ std::make_pair("state",PluginState::RUNNING) });
+   DTO_FIELD(Fields<Enum<PluginState>>, data) = { {"state", PluginState::RUNNING} };
 };
 
 #include OATPP_CODEGEN_END(DTO)

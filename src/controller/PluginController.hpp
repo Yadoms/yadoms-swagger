@@ -12,6 +12,7 @@
 #include "dto/plugin/OnePluginResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 #include "dto/plugin/PluginStateResponseDTO.hpp"
+#include "dto/plugin/PluginDevicesResponseDTO.hpp"
 
 class CPluginController : public oatpp::web::server::api::ApiController
 {
@@ -142,6 +143,22 @@ public:
          );
    }
    ENDPOINT("GET", "/plugin/{pluginId}/state", getInstanceState,
+      PATH(Int32, pluginId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getPluginDevices)
+   {
+      info->addTag("Plugin");
+      info->summary = "Get Plugin Devices";
+      info->description = "List all devices attached to a plugin instance";
+      info->addResponse<Object<PluginDevicesResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("GET", "/plugin/{pluginId}/devices", getPluginDevices,
       PATH(Int32, pluginId))
    {
       return createResponse(Status::CODE_200, "OK");

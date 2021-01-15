@@ -177,6 +177,7 @@ set(YADOMS_SWAGGER_PLUGIN_DTO_SOURCES
         src/dto/plugin/StateDTO.hpp
         src/dto/plugin/OnePluginResponseDTO.hpp
         src/dto/plugin/PluginStateResponseDTO.hpp
+        src/dto/plugin/PluginDevicesResponseDTO.hpp
 )
 
 set(YADOMS_SWAGGER_DTO_SOURCES
