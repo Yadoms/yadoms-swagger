@@ -7,6 +7,7 @@
 #include "dto/plugin/AvailablePluginsParameterizedResponseDTO.hpp"
 #include "dto/plugin/FieldsBodyDTO.hpp"
 #include "dto/plugin/AvailablePluginsWithPackageResponseDTO.hpp"
+#include "dto/plugin/PluginsInstanceResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CPluginController : public oatpp::web::server::api::ApiController
@@ -66,6 +67,20 @@ public:
          );
    }
    ENDPOINT("GET", "/plugin/withPackage", getAllAvailablePluginsWithPackage) {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getAllPluginsInstance)
+   {
+      info->addTag("Plugin");
+      info->summary = "Get All Plugins Instance";
+      info->description = "Get the plugin instances list";
+      info->addResponse<Object<PluginsInstanceResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("GET", "/plugin/instance", getAllPluginsInstance) {
       return createResponse(Status::CODE_200, "OK");
    }
 };

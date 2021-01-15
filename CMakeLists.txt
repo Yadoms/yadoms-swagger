@@ -53,6 +53,7 @@ set(YADOMS_SWAGGER_SHARED_DTO_SOURCES
         src/dto/shared/MinimumVersionDTO.hpp
         src/dto/shared/CoordinatesDTO.hpp
         src/dto/shared/DimensionsDTO.hpp
+        src/dto/shared/PluginCategoryDTO.hpp
 )
 set(YADOMS_SWAGGER_ACQUISITION_DTO_SOURCES 
         src/dto/acquisition/KeywordsLastDataResponseDTO.hpp
@@ -166,6 +167,9 @@ set(YADOMS_SWAGGER_PLUGIN_DTO_SOURCES
         src/dto/plugin/AvailablePluginsWithPackageResponseDTO.hpp
         src/dto/plugin/PluginsPackageDTO.hpp
         src/dto/plugin/PluginPackageDataDTO.hpp
+        src/dto/plugin/PluginInstanceDTO.hpp
+        src/dto/plugin/PluginsInstanceResponseDTO.hpp
+        src/dto/plugin/PluginsInstanceDTO.hpp
 )
 
 set(YADOMS_SWAGGER_DTO_SOURCES
