@@ -163,6 +163,9 @@ set(YADOMS_SWAGGER_PLUGIN_DTO_SOURCES
         src/dto/plugin/AvailablePluginsParameterizedResponseDTO.hpp
         src/dto/plugin/PluginsParameterizedDTO.hpp
         src/dto/plugin/FieldsBodyDTO.hpp
+        src/dto/plugin/AvailablePluginsWithPackageResponseDTO.hpp
+        src/dto/plugin/PluginsPackageDTO.hpp
+        src/dto/plugin/PluginPackageDataDTO.hpp
 )
 
 set(YADOMS_SWAGGER_DTO_SOURCES

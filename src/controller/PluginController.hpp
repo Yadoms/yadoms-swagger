@@ -5,8 +5,9 @@
 #include "oatpp/core/macro/component.hpp"
 #include "dto/plugin/AvailablePluginsResponseDTO.hpp"
 #include "dto/plugin/AvailablePluginsParameterizedResponseDTO.hpp"
-#include OATPP_CODEGEN_BEGIN(ApiController)
 #include "dto/plugin/FieldsBodyDTO.hpp"
+#include "dto/plugin/AvailablePluginsWithPackageResponseDTO.hpp"
+#include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CPluginController : public oatpp::web::server::api::ApiController
 {
@@ -51,6 +52,20 @@ public:
    ENDPOINT("PUT", "/plugin", getAllAvailablePluginsParameterized, 
       BODY_DTO(Object<FieldsBody>, fields))
    {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getAllAvailablePluginsWithPackage)
+   {
+      info->addTag("Plugin");
+      info->summary = "Get All Available Plugins with package";
+      info->description = "Get All Available Plugins with package";
+      info->addResponse<Object<AvailablePluginsWithPackageResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("GET", "/plugin/withPackage", getAllAvailablePluginsWithPackage) {
       return createResponse(Status::CODE_200, "OK");
    }
 };
