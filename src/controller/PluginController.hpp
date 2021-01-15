@@ -13,6 +13,7 @@
 #include "dto/plugin/PluginStateResponseDTO.hpp"
 #include "dto/plugin/PluginDevicesResponseDTO.hpp"
 #include "dto/plugin/InstanceLogResponseDTO.hpp"
+#include "dto/shared/EmptyResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CPluginController : public oatpp::web::server::api::ApiController
@@ -177,6 +178,26 @@ public:
    }
    ENDPOINT("GET", "/plugin/{pluginId}/log", getInstanceLog,
       PATH(Int32, pluginId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getBinding)
+   {
+      info->addTag("Plugin");
+      info->summary = "Get plugin binding";
+      std::string description;
+      description.append("Get plugin binding");
+      description.append("\n\n");
+      description.append("QueryName could be found in plugin package.in.json under extraQueries field");
+      info->description = description.c_str();
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("GET", "/plugin/{pluginId}/binding/{queryName}", getBinding,
+      PATH(Int32, pluginId), PATH(String, queryName))
    {
       return createResponse(Status::CODE_200, "OK");
    }
