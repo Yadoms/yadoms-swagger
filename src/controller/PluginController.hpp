@@ -14,6 +14,7 @@
 #include "dto/plugin/PluginDevicesResponseDTO.hpp"
 #include "dto/plugin/InstanceLogResponseDTO.hpp"
 #include "dto/shared/EmptyResponseDTO.hpp"
+#include "dto/plugin/InstanceRunningResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CPluginController : public oatpp::web::server::api::ApiController
@@ -229,6 +230,22 @@ public:
          );
    }
    ENDPOINT("PUT", "/plugin/{pluginId}/stop", stopInstance,
+      PATH(Int32, pluginId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getInstanceRunning)
+   {
+      info->addTag("Plugin");
+      info->summary = "Get plugin instance state";
+      info->description = "Get the running state of a particular instance of plugin";
+      info->addResponse<Object<InstanceRunningResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("GET", "/plugin/{pluginId}/instanceRunning", getInstanceRunning,
       PATH(Int32, pluginId))
    {
       return createResponse(Status::CODE_200, "OK");
