@@ -9,6 +9,7 @@
 #include "dto/plugin/AvailablePluginsWithPackageResponseDTO.hpp"
 #include "dto/plugin/PluginsInstanceResponseDTO.hpp"
 #include "dto/plugin/PluginsInstanceWithStateResponseDTO.hpp"
+#include "dto/plugin/OnePluginResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CPluginController : public oatpp::web::server::api::ApiController
@@ -110,6 +111,22 @@ public:
          );
    }
    ENDPOINT("GET", "/plugin/instance/handleManuallyDeviceCreation", getAllPluginsInstanceForManualDeviceCreation) {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getOnePlugin)
+   {
+      info->addTag("Plugin");
+      info->summary = "Get plugin instance configuration";
+      info->description = "Get plugin instance configuration";
+      info->addResponse<Object<OnePluginResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("GET", "/plugin/{pluginId}", getOnePlugin, 
+            PATH(Int32, pluginId))
+   {
       return createResponse(Status::CODE_200, "OK");
    }
 };
