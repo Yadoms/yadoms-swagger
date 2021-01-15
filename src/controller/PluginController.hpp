@@ -250,6 +250,21 @@ public:
    {
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(createPlugin)
+   {
+      info->addTag("Plugin");
+      info->summary = "Create a new plugin instance";
+      info->description = "Create a new instance of a plugin";
+      info->addResponse<Object<InstanceRunningResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("POST", "/plugin", createPlugin, BODY_DTO(Object<PluginInstance>, pluginInstance))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 #include OATPP_CODEGEN_END(ApiController)
 #endif /* PluginController_hpp */
