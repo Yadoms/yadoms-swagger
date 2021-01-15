@@ -355,6 +355,38 @@ public:
 
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(deleteAllPlugins)
+   {
+      info->addTag("Plugin");
+      info->summary = "Delete all plugins";
+      info->description = "Delete all plugins";
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("DELETE", "/plugin", deleteAllPlugins)
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(deletePlugin)
+   {
+      info->addTag("Plugin");
+      info->summary = "Delete a plugin";
+      info->description = "Delete a plugin";
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("DELETE", "/plugin/{pluginId}",
+      deletePlugin,
+      PATH(Int32, pluginId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 #include OATPP_CODEGEN_END(ApiController)
 #endif /* PluginController_hpp */
