@@ -11,6 +11,7 @@
 #include "dto/plugin/PluginsInstanceWithStateResponseDTO.hpp"
 #include "dto/plugin/OnePluginResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
+#include "dto/plugin/PluginStateResponseDTO.hpp"
 
 class CPluginController : public oatpp::web::server::api::ApiController
 {
@@ -126,6 +127,22 @@ public:
    }
    ENDPOINT("GET", "/plugin/{pluginId}", getOnePlugin, 
             PATH(Int32, pluginId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getInstanceState)
+   {
+      info->addTag("Plugin");
+      info->summary = "Get the state of a particular instance of plugin";
+      info->description = "Get the state of a particular instance of plugin";
+      info->addResponse<Object<PluginStateResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("GET", "/plugin/{pluginId}/state", getInstanceState,
+      PATH(Int32, pluginId))
    {
       return createResponse(Status::CODE_200, "OK");
    }
