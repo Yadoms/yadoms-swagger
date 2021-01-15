@@ -55,6 +55,9 @@ set(YADOMS_SWAGGER_SHARED_DTO_SOURCES
         src/dto/shared/DimensionsDTO.hpp
         src/dto/shared/PluginCategoryDTO.hpp
         src/dto/shared/PluginStateDTO.hpp
+        src/dto/shared/EmptyObjectDTO.hpp
+        src/dto/shared/TaskIdResponseDTO.hpp
+
 )
 set(YADOMS_SWAGGER_ACQUISITION_DTO_SOURCES 
         src/dto/acquisition/KeywordsLastDataResponseDTO.hpp
@@ -136,8 +139,6 @@ set(YADOMS_SWAGGER_MAINTENANCE_DTO_SOURCES
         src/dto/maintenance/BackupsResponseDTO.hpp
         src/dto/maintenance/BackupsDTO.hpp
         src/dto/maintenance/FileDataDTO.hpp
-        src/dto/maintenance/TaskIdResponseDTO.hpp
-        src/dto/maintenance/TaskIdDTO.hpp
         src/dto/maintenance/LogsResponseDTO.hpp
         src/dto/maintenance/LogsDTO.hpp
         src/dto/maintenance/ExportDataDTO.hpp

@@ -6,7 +6,7 @@
 #include "dto/maintenance/DatabaseInformationResponseDTO.hpp"
 #include "dto/maintenance/BackupsResponseDTO.hpp"
 #include "dto/shared/EmptyResponseDTO.hpp"
-#include "dto/maintenance/TaskIdResponseDTO.hpp"
+#include "dto/shared/TaskIdResponseDTO.hpp"
 #include "dto/maintenance/LogsResponseDTO.hpp"
 #include "dto/maintenance/ExportDataResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)

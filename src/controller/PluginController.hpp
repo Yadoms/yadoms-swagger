@@ -16,6 +16,8 @@
 #include "dto/shared/EmptyResponseDTO.hpp"
 #include "dto/plugin/InstanceRunningResponseDTO.hpp"
 #include "dto/plugin/PluginDeviceBodyDTO.hpp"
+#include "dto/shared/EmptyObjectDTO.hpp"
+#include "dto/shared/TaskIdResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CPluginController : public oatpp::web::server::api::ApiController
@@ -298,6 +300,32 @@ public:
       PATH(Int32, pluginId), 
       BODY_DTO(Object<PluginInstance>, pluginInstanceBody))
    {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(sendExtraQuery)
+   {
+      info->addTag("Plugin");
+      info->summary = "Send an extra command";
+      info->description = "Send an extra command";
+      info->body.description = "Extra Query Data";
+      info->body.required = false;
+      info->addConsumes<Object<EmptyObject>>(
+         "application/json",
+         ""
+         );
+
+      info->addResponse<Object<TaskIdResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("POST", "/plugin/{pluginId}/extraQuery/{extraQueryName}", 
+      sendExtraQuery,
+      PATH(Int32, pluginId),
+      PATH(Int32, extraQueryId))
+   {
+     
       return createResponse(Status::CODE_200, "OK");
    }
 };
