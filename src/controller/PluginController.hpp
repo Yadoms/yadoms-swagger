@@ -201,6 +201,38 @@ public:
    {
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(startInstance)
+   {
+      info->addTag("Plugin");
+      info->summary = "Start a plugin Instance";
+      info->description = "Start a registered instance of plugin";
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("PUT", "/plugin/{pluginId}/start", startInstance,
+      PATH(Int32, pluginId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(stopInstance)
+   {
+      info->addTag("Plugin");
+      info->summary = "Stop a plugin Instance";
+      info->description = "Stop the instance and wait for stopped";
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("PUT", "/plugin/{pluginId}/stop", stopInstance,
+      PATH(Int32, pluginId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 #include OATPP_CODEGEN_END(ApiController)
 #endif /* PluginController_hpp */
