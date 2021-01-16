@@ -6,6 +6,7 @@
 #include "dto/recipient/RecipientsResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 #include "dto/recipient/RecipientResponseDTO.hpp"
+#include "dto/shared/EmptyResponseDTO.hpp"
 
 class CRecipientController : public oatpp::web::server::api::ApiController
 {
@@ -40,6 +41,37 @@ public:
    }
    ENDPOINT("GET", "/recipient/{recipientId}", getOneRecipient,
             PATH(Int32, recipientId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(removeAllRecipients)
+   {
+      info->addTag("Recipient");
+      info->summary = "Remove all recipients";
+      info->description = "Remove all recipients";
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("DELETE", "/recipient", removeAllRecipients)
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(removeOneRecipient)
+   {
+      info->addTag("Recipient");
+      info->summary = "Remove one recipient";
+      info->description = "Remove one recipient";
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("DELETE", "/recipient/{recipientId}", removeOneRecipient,
+      PATH(Int32, recipientId))
    {
       return createResponse(Status::CODE_200, "OK");
    }
