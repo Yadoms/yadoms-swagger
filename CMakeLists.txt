@@ -64,6 +64,7 @@ set(YADOMS_SWAGGER_SHARED_DTO_SOURCES
         src/dto/shared/EmptyObjectDTO.hpp
         src/dto/shared/TaskIdResponseDTO.hpp
         src/dto/shared/EventTypeDTO.hpp
+        src/dto/shared/YadomsVersionDTO.hpp
 
 )
 set(YADOMS_SWAGGER_ACQUISITION_DTO_SOURCES 
@@ -211,6 +212,8 @@ set(YADOMS_SWAGGER_SYSTEM_DTO_SOURCES
         src/dto/system/NetworkInterfacesDTO.hpp
         src/dto/system/NetworkInterfacesWithoutLoopbackResponseDTO.hpp
         src/dto/system/ResultResponseDTO.hpp
+        src/dto/system/SystemInformationResponseDTO.hpp
+        src/dto/system/SystemInformationDTO.hpp
 )
 
 set(YADOMS_SWAGGER_DTO_SOURCES

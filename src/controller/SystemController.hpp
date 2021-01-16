@@ -10,6 +10,7 @@
 #include "dto/system/ResultResponseDTO.hpp"
 #include "dto/shared/EmptyResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
+#include "dto/system/SystemInformationResponseDTO.hpp"
 
 class CSystemController : public oatpp::web::server::api::ApiController
 {
@@ -54,6 +55,22 @@ public:
    }
    ENDPOINT("GET", "/system/binding/{bindingId}", getBinding,
       PATH(Enum<SystemBindingQueryType>, bindingId))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getSystemInformation)
+   {
+      info->addTag("System");
+      info->summary = "Get System Information";
+      info->description = "Get System Information";
+    
+      info->addResponse<Object<SystemInformationResponse>>(
+         Status::CODE_203,
+         "application/json"
+         );
+   }
+   ENDPOINT("GET", "/system/information", getSystemInformation)
    {
       return createResponse(Status::CODE_200, "OK");
    }
