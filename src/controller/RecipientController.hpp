@@ -75,6 +75,23 @@ public:
    {
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(addRecipient)
+   {
+      info->addTag("Recipient");
+      info->summary = "Add a new recipient";
+      info->description = "Add a new recipient";
+      info->addResponse<Object<EmptyResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("POST", "/recipient", addRecipient,
+      PATH(Int32, recipientId), 
+      BODY_DTO(Object<RecipientData>, recipientData))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 #include OATPP_CODEGEN_END(ApiController)
 #endif /* RecipientController_hpp */
