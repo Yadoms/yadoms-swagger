@@ -215,6 +215,9 @@ set(YADOMS_SWAGGER_SYSTEM_DTO_SOURCES
         src/dto/system/SystemInformationResponseDTO.hpp
         src/dto/system/SystemInformationDTO.hpp
         src/dto/system/CurrentTimeResponseDTO.hpp
+        src/dto/system/CapacityDTO.hpp
+        src/dto/system/CapacitiesResponseDTO.hpp
+        src/dto/system/CapacitiesDTO.hpp
 )
 
 set(YADOMS_SWAGGER_DTO_SOURCES

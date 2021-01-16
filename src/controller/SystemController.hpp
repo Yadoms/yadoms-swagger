@@ -11,6 +11,7 @@
 #include "dto/shared/EmptyResponseDTO.hpp"
 #include "dto/system/SystemInformationResponseDTO.hpp"
 #include "dto/system/CurrentTimeResponseDTO.hpp"
+#include "dto/system/CapacitiesResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CSystemController : public oatpp::web::server::api::ApiController
@@ -90,6 +91,23 @@ public:
          );
    }
    ENDPOINT("GET", "/system/currentTime", getCurrentTime)
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getVirtualDevicesSupportedCapacities)
+   {
+      info->addTag("System");
+      info->summary = "Get Virtual Devices Supported Capacities";
+      info->description = "Get Virtual Devices Supported Capacities";
+
+      info->addResponse<Object<CapacitiesResponse>>(
+         Status::CODE_203,
+         "application/json",
+         ""
+         );
+   }
+   ENDPOINT("GET", "/system/virtualDevicesSupportedCapacities", getVirtualDevicesSupportedCapacities)
    {
       return createResponse(Status::CODE_200, "OK");
    }
