@@ -13,6 +13,7 @@
 #include "controller/PluginController.hpp"
 #include "controller/PluginEventLoggerController.hpp"
 #include "controller/RecipientController.hpp"
+#include "controller/SystemController.hpp"
 
 void run()
 {
@@ -58,6 +59,9 @@ void run()
 
    auto recipientController = std::make_shared<CRecipientController>();
    recipientController->addEndpointsToRouter(router);
+
+   auto systemController = std::make_shared<CSystemController>();
+   systemController->addEndpointsToRouter(router);
    
    /* Get connection handler component */
    OATPP_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, connectionHandler);
@@ -78,6 +82,7 @@ void run()
    docEndpoints->pushBackAll(pluginController->getEndpoints());
    docEndpoints->pushBackAll(pluginEventLoggerController->getEndpoints());
    docEndpoints->pushBackAll(recipientController->getEndpoints());
+   docEndpoints->pushBackAll(systemController->getEndpoints());
 
    auto swaggerController = oatpp::swagger::Controller::createShared(docEndpoints);
    swaggerController->addEndpointsToRouter(router);

@@ -31,6 +31,8 @@ set(YADOMS_SWAGGER_CONTROLLER_SOURCES
         src/controller/PluginEventLoggerController.hpp
         src/controller/RecipientController.cpp
         src/controller/RecipientController.hpp
+        src/controller/SystemController.cpp
+        src/controller/SystemController.hpp
 )
 set(YADOMS_SWAGGER_EMPTY_DTO_SOURCES
         src/dto/empty/EmptyResponseDTO.hpp
@@ -202,6 +204,15 @@ set(YADOMS_SWAGGER_RECIPIENT_DTO_SOURCES
         src/dto/recipient/RecipientFieldResponseDTO.hpp
 )
 
+set(YADOMS_SWAGGER_SYSTEM_DTO_SOURCES
+        src/dto/system/SerialPortsResponseDTO.hpp
+        src/dto/system/SystemBindingQueryTypeDTO.hpp
+        src/dto/system/NetworkInterfacesResponseDTO.hpp
+        src/dto/system/NetworkInterfacesDTO.hpp
+        src/dto/system/NetworkInterfacesWithoutLoopbackResponseDTO.hpp
+        src/dto/system/ResultResponseDTO.hpp
+)
+
 set(YADOMS_SWAGGER_DTO_SOURCES
         ${YADOMS_SWAGGER_EMPTY_DTO_SOURCES}
         ${YADOMS_SWAGGER_SHARED_DTO_SOURCES}
@@ -216,6 +227,7 @@ set(YADOMS_SWAGGER_DTO_SOURCES
         ${YADOMS_SWAGGER_PLUGIN_DTO_SOURCES}
         ${YADOMS_SWAGGER_PLUGIN_EVENT_LOGGER_DTO_SOURCES}
         ${YADOMS_SWAGGER_RECIPIENT_DTO_SOURCES}
+        ${YADOMS_SWAGGER_SYSTEM_DTO_SOURCES}
 )
 
 set(YADOMS_SWAGGER_SOURCES
@@ -238,6 +250,7 @@ source_group(sources\\dto\\widget dto/widget/*.*)
 source_group(sources\\dto\\pluginEventLogger dto/pluginEventLogger/*.*)
 source_group(sources\\dto\\plugin dto/plugin/*.*)
 source_group(sources\\dto\\recipient dto/recipient/*.*)
+source_group(sources\\dto\\system dto/system/*.*)
 
  # Allow big object
 if (MSVC)

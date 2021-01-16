@@ -130,7 +130,6 @@ public:
       info->addTag("Recipient");
       info->summary = "Get all the fields with specific name";
       info->description = "Get all the fields with specific name";
-      // TODO : add info->path when oatpp is fixed
       info->pathParams["fieldName"].description = "The field name (mobile, email, etc...)";
       info->addResponse<Object<RecipientFieldResponse>>(
          Status::CODE_200,
