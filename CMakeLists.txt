@@ -27,6 +27,8 @@ set(YADOMS_SWAGGER_CONTROLLER_SOURCES
         src/controller/WidgetController.hpp
         src/controller/PluginController.cpp
         src/controller/PluginController.hpp
+        src/controller/PluginEventLoggerController.cpp
+        src/controller/PluginEventLoggerController.hpp
 )
 set(YADOMS_SWAGGER_EMPTY_DTO_SOURCES
         src/dto/empty/EmptyResponseDTO.hpp
@@ -57,6 +59,7 @@ set(YADOMS_SWAGGER_SHARED_DTO_SOURCES
         src/dto/shared/PluginStateDTO.hpp
         src/dto/shared/EmptyObjectDTO.hpp
         src/dto/shared/TaskIdResponseDTO.hpp
+        src/dto/shared/EventTypeDTO.hpp
 
 )
 set(YADOMS_SWAGGER_ACQUISITION_DTO_SOURCES 
@@ -184,6 +187,11 @@ set(YADOMS_SWAGGER_PLUGIN_DTO_SOURCES
         src/dto/plugin/PluginDeviceBodyDTO.hpp
 )
 
+set(YADOMS_SWAGGER_PLUGIN_EVENT_LOGGER_DTO_SOURCES
+        src/dto/pluginEventLogger/PluginEventResponseDTO.hpp
+        src/dto/pluginEventLogger/PluginEventLoggerDTO.hpp
+)
+
 set(YADOMS_SWAGGER_DTO_SOURCES
         ${YADOMS_SWAGGER_EMPTY_DTO_SOURCES}
         ${YADOMS_SWAGGER_SHARED_DTO_SOURCES}
@@ -196,6 +204,7 @@ set(YADOMS_SWAGGER_DTO_SOURCES
         ${YADOMS_SWAGGER_PAGE_DTO_SOURCES}
         ${YADOMS_SWAGGER_WIDGET_DTO_SOURCES}
         ${YADOMS_SWAGGER_PLUGIN_DTO_SOURCES}
+        ${YADOMS_SWAGGER_PLUGIN_EVENT_LOGGER_DTO_SOURCES}
 )
 
 set(YADOMS_SWAGGER_SOURCES
@@ -215,7 +224,9 @@ source_group(sources\\dto\\eventLogger dto/eventLogger/*.*)
 source_group(sources\\dto\\maintenance dto/maintenance/*.*)
 source_group(sources\\dto\\page dto/page/*.*)
 source_group(sources\\dto\\widget dto/widget/*.*)
+source_group(sources\\dto\\pluginEventLogger dto/pluginEventLogger/*.*)
 source_group(sources\\dto\\plugin dto/plugin/*.*)
+
  # Allow big object
 if (MSVC)
    add_definitions(/bigobj)
