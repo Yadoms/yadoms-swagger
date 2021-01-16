@@ -7,6 +7,7 @@
 #include OATPP_CODEGEN_BEGIN(ApiController)
 #include "dto/recipient/RecipientResponseDTO.hpp"
 #include "dto/shared/EmptyResponseDTO.hpp"
+#include "dto/recipient/RecipientFieldResponseDTO.hpp"
 
 class CRecipientController : public oatpp::web::server::api::ApiController
 {
@@ -34,7 +35,7 @@ public:
       info->addTag("Recipient");
       info->summary = "Get one recipient";
       info->description = "Get one recipient";
-      info->addResponse<Object<RecipientResponseResponse>>(
+      info->addResponse<Object<RecipientResponse>>(
          Status::CODE_200,
          "application/json"
          );
@@ -81,7 +82,7 @@ public:
       info->addTag("Recipient");
       info->summary = "Add a new recipient";
       info->description = "Add a new recipient";
-      info->addResponse<Object<RecipientResponseResponse>>(
+      info->addResponse<Object<RecipientResponse>>(
          Status::CODE_200,
          "application/json"
          );
@@ -97,7 +98,7 @@ public:
       info->addTag("Recipient");
       info->summary = "Update a recipient";
       info->description = "Update a recipient";
-      info->addResponse<Object<RecipientResponseResponse>>(
+      info->addResponse<Object<RecipientResponse>>(
          Status::CODE_200,
          "application/json"
          );
@@ -105,6 +106,39 @@ public:
    ENDPOINT("PUT", "/recipient/{recipientId}", updateRecipient,
       PATH(Int32, recipientId),
       BODY_DTO(Object<RecipientData>, recipientData))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getAllRecipientFields)
+   {
+      info->addTag("Recipient");
+      info->summary = "Get All Recipient Fields";
+      info->description = "Get All Recipient Fields";
+      info->addResponse<Object<RecipientFieldResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("GET", "/recipient/field", getAllRecipientFields)
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getAllRecipientsByField)
+   {
+      info->addTag("Recipient");
+      info->summary = "Get all the fields with specific name";
+      info->description = "Get all the fields with specific name";
+      // TODO : add info->path when oatpp is fixed
+      info->pathParams["fieldName"].description = "The field name (mobile, email, etc...)";
+      info->addResponse<Object<RecipientFieldResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("GET", "/recipient/field/{fieldName}", getAllRecipientsByField, 
+      PATH(String, fieldName))
    {
       return createResponse(Status::CODE_200, "OK");
    }
