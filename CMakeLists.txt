@@ -198,6 +198,7 @@ set(YADOMS_SWAGGER_RECIPIENT_DTO_SOURCES
         src/dto/recipient/RecipientsResponseDTO.hpp
         src/dto/recipient/RecipientDataDTO.hpp
         src/dto/recipient/RecipientFieldDataDTO.hpp
+        src/dto/recipient/RecipientResponseDTO.hpp
 )
 
 set(YADOMS_SWAGGER_DTO_SOURCES

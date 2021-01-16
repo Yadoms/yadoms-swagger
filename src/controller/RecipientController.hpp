@@ -5,6 +5,7 @@
 #include "oatpp/core/macro/component.hpp"
 #include "dto/recipient/RecipientsResponseDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(ApiController)
+#include "dto/recipient/RecipientResponseDTO.hpp"
 
 class CRecipientController : public oatpp::web::server::api::ApiController
 {
@@ -24,6 +25,22 @@ public:
          );
    }
    ENDPOINT("GET", "/recipient", getAllRecipients) {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getOneRecipient)
+   {
+      info->addTag("Recipient");
+      info->summary = "Get one recipient";
+      info->description = "Get one recipient";
+      info->addResponse<Object<RecipientResponseResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("GET", "/recipient/{recipientId}", getOneRecipient,
+            PATH(Int32, recipientId))
+   {
       return createResponse(Status::CODE_200, "OK");
    }
 };
