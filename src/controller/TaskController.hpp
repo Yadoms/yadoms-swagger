@@ -43,6 +43,22 @@ public:
    {
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(addTask)
+   {
+      info->addTag("Task");
+      info->summary = "Create a task, WARNING : This WS is not available";
+      info->description = "WARNING : This WS is not available";
+      info->addResponse<Object<TaskResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("POST", "/task", addTask,
+      BODY_DTO(Object<Task>, taskBody))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 #include OATPP_CODEGEN_END(ApiController)
 #endif /* TaskController_hpp */
