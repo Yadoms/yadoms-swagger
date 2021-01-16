@@ -226,6 +226,7 @@ set(YADOMS_SWAGGER_SYSTEM_DTO_SOURCES
 set(YADOMS_SWAGGER_TASK_DTO_SOURCES
         src/dto/task/TaskDTO.hpp
         src/dto/task/TasksResponseDTO.hpp
+        src/dto/task/TaskResponseDTO.hpp
 )
 
 set(YADOMS_SWAGGER_DTO_SOURCES
