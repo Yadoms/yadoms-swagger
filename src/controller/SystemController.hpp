@@ -9,8 +9,9 @@
 #include "dto/system/NetworkInterfacesWithoutLoopbackResponseDTO.hpp"
 #include "dto/system/ResultResponseDTO.hpp"
 #include "dto/shared/EmptyResponseDTO.hpp"
-#include OATPP_CODEGEN_BEGIN(ApiController)
 #include "dto/system/SystemInformationResponseDTO.hpp"
+#include "dto/system/CurrentTimeResponseDTO.hpp"
+#include OATPP_CODEGEN_BEGIN(ApiController)
 
 class CSystemController : public oatpp::web::server::api::ApiController
 {
@@ -67,10 +68,28 @@ public:
     
       info->addResponse<Object<SystemInformationResponse>>(
          Status::CODE_203,
-         "application/json"
+         "application/json",
+         ""
          );
    }
    ENDPOINT("GET", "/system/information", getSystemInformation)
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(getCurrentTime)
+   {
+      info->addTag("System");
+      info->summary = "Get Current Time";
+      info->description = "Get Current Time";
+
+      info->addResponse<Object<CurrentTimeResponse>>(
+         Status::CODE_203,
+         "application/json",
+         ""
+         );
+   }
+   ENDPOINT("GET", "/system/currentTime", getCurrentTime)
    {
       return createResponse(Status::CODE_200, "OK");
    }
