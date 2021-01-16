@@ -81,13 +81,29 @@ public:
       info->addTag("Recipient");
       info->summary = "Add a new recipient";
       info->description = "Add a new recipient";
-      info->addResponse<Object<EmptyResponse>>(
+      info->addResponse<Object<RecipientResponseResponse>>(
          Status::CODE_200,
          "application/json"
          );
    }
    ENDPOINT("POST", "/recipient", addRecipient,
-      PATH(Int32, recipientId), 
+      BODY_DTO(Object<RecipientData>, recipientData))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
+
+   ENDPOINT_INFO(updateRecipient)
+   {
+      info->addTag("Recipient");
+      info->summary = "Update a recipient";
+      info->description = "Update a recipient";
+      info->addResponse<Object<RecipientResponseResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("PUT", "/recipient/{recipientId}", updateRecipient,
+      PATH(Int32, recipientId),
       BODY_DTO(Object<RecipientData>, recipientData))
    {
       return createResponse(Status::CODE_200, "OK");
