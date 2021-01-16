@@ -21,7 +21,7 @@ public:
       info->addTag("Recipient");
       info->summary = "Get all recipients";
       info->description = "List all recipients";
-      info->addResponse<Object<RecipientsResponseResponse>>(
+      info->addResponse<Object<RecipientsResponse>>(
          Status::CODE_200,
          "application/json"
          );

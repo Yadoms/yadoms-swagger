@@ -33,6 +33,8 @@ set(YADOMS_SWAGGER_CONTROLLER_SOURCES
         src/controller/RecipientController.hpp
         src/controller/SystemController.cpp
         src/controller/SystemController.hpp
+        src/controller/TaskController.cpp
+        src/controller/TaskController.hpp
 )
 set(YADOMS_SWAGGER_EMPTY_DTO_SOURCES
         src/dto/empty/EmptyResponseDTO.hpp
@@ -65,6 +67,7 @@ set(YADOMS_SWAGGER_SHARED_DTO_SOURCES
         src/dto/shared/TaskIdResponseDTO.hpp
         src/dto/shared/EventTypeDTO.hpp
         src/dto/shared/YadomsVersionDTO.hpp
+        src/dto/shared/TaskStatusDTO.hpp
 
 )
 set(YADOMS_SWAGGER_ACQUISITION_DTO_SOURCES 
@@ -220,6 +223,11 @@ set(YADOMS_SWAGGER_SYSTEM_DTO_SOURCES
         src/dto/system/CapacitiesDTO.hpp
 )
 
+set(YADOMS_SWAGGER_TASK_DTO_SOURCES
+        src/dto/task/TaskDTO.hpp
+        src/dto/task/TasksResponseDTO.hpp
+)
+
 set(YADOMS_SWAGGER_DTO_SOURCES
         ${YADOMS_SWAGGER_EMPTY_DTO_SOURCES}
         ${YADOMS_SWAGGER_SHARED_DTO_SOURCES}
@@ -235,6 +243,7 @@ set(YADOMS_SWAGGER_DTO_SOURCES
         ${YADOMS_SWAGGER_PLUGIN_EVENT_LOGGER_DTO_SOURCES}
         ${YADOMS_SWAGGER_RECIPIENT_DTO_SOURCES}
         ${YADOMS_SWAGGER_SYSTEM_DTO_SOURCES}
+        ${YADOMS_SWAGGER_TASK_DTO_SOURCES}
 )
 
 set(YADOMS_SWAGGER_SOURCES
@@ -258,6 +267,7 @@ source_group(sources\\dto\\pluginEventLogger dto/pluginEventLogger/*.*)
 source_group(sources\\dto\\plugin dto/plugin/*.*)
 source_group(sources\\dto\\recipient dto/recipient/*.*)
 source_group(sources\\dto\\system dto/system/*.*)
+source_group(sources\\dto\\task dto/task/*.*)
 
  # Allow big object
 if (MSVC)
