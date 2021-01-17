@@ -32,6 +32,7 @@ cmake --build .
 |---|---|
 |http://localhost:8000/ | Root page |
 |http://localhost:8000/swagger/ui | Swagger UI page |
+|http://localhost:8000/api-docs/oas-3.0.0.json | Swagger json doc |
 
 # Dependencies
 - [Oatpp](https://github.com/oatpp/oatpp)
