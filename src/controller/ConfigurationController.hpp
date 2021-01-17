@@ -113,7 +113,8 @@ public:
          "application/json"
          );
    }
-   ENDPOINT("PUT", "/configuration/external/{externalSectionName}", saveExternalConfiguration)
+   ENDPOINT("PUT", "/configuration/external/{externalSectionName}", saveExternalConfiguration,
+      PATH(Enum<ExternalSectionType>, externalSectionName))
    {
       return createResponse(Status::CODE_200, "OK");
    }

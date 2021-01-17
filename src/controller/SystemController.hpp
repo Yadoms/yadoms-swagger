@@ -21,11 +21,16 @@ public:
       : ApiController(objectMapper)
    {
    }
-   ENDPOINT_INFO(getBinding)
+   ENDPOINT_INFO(getSystemBinding)
    {
       info->addTag("System");
       info->summary = "Get System Binding";
-      info->description = "Get System Binding \n\n Warning : All responses code is 200";
+      std::string description;
+      description.append("Get System Binding");
+      description.append("\n\n");
+      description.append("Warning : All responses code is 200");
+      info->description = description.c_str();
+
       info->addResponse<Object<SerialPortsResponse>>(
          Status::CODE_200,
          "application/json",
@@ -50,12 +55,12 @@ public:
          );
 
       info->addResponse<Object<EmptyResponse>>(
-         Status::CODE_203,
+         Status::CODE_204,
          "application/json",
          "Supported Timezones response, return A list of all supported timezones"
          );
    }
-   ENDPOINT("GET", "/system/binding/{bindingId}", getBinding,
+   ENDPOINT("GET", "/system/binding/{bindingId}", getSystemBinding,
       PATH(Enum<SystemBindingQueryType>, bindingId))
    {
       return createResponse(Status::CODE_200, "OK");

@@ -18,7 +18,7 @@ public:
       info->addTag("Plugin Event Logger");
       info->summary = "Get Plugin logs";
       info->description = "Get the events history for a plugin";
-      info->pathParams["fromDate"].required = false;
+      info->pathParams["fromDate"].required = true;
       info->pathParams["fromDate"].description =
          "Date format : YYYYMMDDThhmmss where T is delimeter between date and time (Example : 20201230T102659)";
       info->addResponse<Object<PluginEventLoggerResponse>>(

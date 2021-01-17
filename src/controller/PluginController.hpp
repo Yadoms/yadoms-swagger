@@ -281,6 +281,7 @@ public:
    }
    ENDPOINT("POST", "/plugin/{pluginId}/createDevice", 
             createDevice,
+            PATH(Int32, pluginId),
             BODY_DTO(Object<PluginDeviceBody>, plugindeviceBody))
    {
       return createResponse(Status::CODE_200, "OK");
