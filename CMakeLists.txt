@@ -70,6 +70,7 @@ set(YADOMS_SWAGGER_SHARED_DTO_SOURCES
         src/dto/shared/EventTypeDTO.hpp
         src/dto/shared/YadomsVersionDTO.hpp
         src/dto/shared/TaskStatusDTO.hpp
+        src/dto/shared/PreReleasesDTO.hpp
 
 )
 set(YADOMS_SWAGGER_ACQUISITION_DTO_SOURCES 
@@ -232,7 +233,19 @@ set(YADOMS_SWAGGER_TASK_DTO_SOURCES
 )
 
 set(YADOMS_SWAGGER_UPDATE_DTO_SOURCES
-        src/dto/update/UpdateEmptyResponseDTO.hpp
+        src/dto/update/YadomsUpdateDataDTO.hpp
+        src/dto/update/VersionsUpdateDataDTO.hpp
+        src/dto/update/DownloadDataDTO.hpp
+        src/dto/update/AvailableUpdatesResponseDTO.hpp
+        src/dto/update/UpdatePluginDataDTO.hpp
+        src/dto/update/PluginsVersionsUpdateData.hpp
+        src/dto/update/DownloadUrlDTO.hpp
+        src/dto/update/AivailableUpdatesContainerDTO.hpp
+        src/dto/update/PluginsContainerDTO.hpp
+        src/dto/update/NewPluginDataDTO.hpp
+        src/dto/update/NewPluginVersionsDTO.hpp
+        src/dto/update/WidgetsContainerDTO.hpp
+        src/dto/update/ScriptInterpretersContainerDTO.hpp
 )
 
 set(YADOMS_SWAGGER_DTO_SOURCES
