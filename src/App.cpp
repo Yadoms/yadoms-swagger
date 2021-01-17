@@ -15,6 +15,7 @@
 #include "controller/RecipientController.hpp"
 #include "controller/SystemController.hpp"
 #include "controller/TaskController.hpp"
+#include "controller/UpdateController.hpp"
 
 void run()
 {
@@ -66,6 +67,9 @@ void run()
 
    auto taskController = std::make_shared<CTaskController>();
    taskController->addEndpointsToRouter(router);
+
+   auto updateController = std::make_shared<CUpdateController>();
+   updateController->addEndpointsToRouter(router);
    
    /* Get connection handler component */
    OATPP_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, connectionHandler);
@@ -88,6 +92,7 @@ void run()
    docEndpoints->pushBackAll(recipientController->getEndpoints());
    docEndpoints->pushBackAll(systemController->getEndpoints());
    docEndpoints->pushBackAll(taskController->getEndpoints());
+   docEndpoints->pushBackAll(updateController->getEndpoints());
 
    auto swaggerController = oatpp::swagger::Controller::createShared(docEndpoints);
    swaggerController->addEndpointsToRouter(router);

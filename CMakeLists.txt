@@ -35,6 +35,8 @@ set(YADOMS_SWAGGER_CONTROLLER_SOURCES
         src/controller/SystemController.hpp
         src/controller/TaskController.cpp
         src/controller/TaskController.hpp
+        src/controller/UpdateController.cpp
+        src/controller/UpdateController.hpp
 )
 set(YADOMS_SWAGGER_EMPTY_DTO_SOURCES
         src/dto/empty/EmptyResponseDTO.hpp
@@ -229,6 +231,10 @@ set(YADOMS_SWAGGER_TASK_DTO_SOURCES
         src/dto/task/TaskResponseDTO.hpp
 )
 
+set(YADOMS_SWAGGER_UPDATE_DTO_SOURCES
+        src/dto/update/UpdateEmptyResponseDTO.hpp
+)
+
 set(YADOMS_SWAGGER_DTO_SOURCES
         ${YADOMS_SWAGGER_EMPTY_DTO_SOURCES}
         ${YADOMS_SWAGGER_SHARED_DTO_SOURCES}
@@ -245,6 +251,7 @@ set(YADOMS_SWAGGER_DTO_SOURCES
         ${YADOMS_SWAGGER_RECIPIENT_DTO_SOURCES}
         ${YADOMS_SWAGGER_SYSTEM_DTO_SOURCES}
         ${YADOMS_SWAGGER_TASK_DTO_SOURCES}
+        ${YADOMS_SWAGGER_UPDATE_DTO_SOURCES}
 )
 
 set(YADOMS_SWAGGER_SOURCES
@@ -269,7 +276,7 @@ source_group(sources\\dto\\plugin dto/plugin/*.*)
 source_group(sources\\dto\\recipient dto/recipient/*.*)
 source_group(sources\\dto\\system dto/system/*.*)
 source_group(sources\\dto\\task dto/task/*.*)
-
+source_group(sources\\dto\\update dto/update/*.*)
  # Allow big object
 if (MSVC)
    add_definitions(/bigobj)
