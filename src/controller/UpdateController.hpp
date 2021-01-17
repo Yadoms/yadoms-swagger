@@ -44,7 +44,7 @@ public:
    }
 
    ENDPOINT("GET", "/update/list/{includePrereleases}", availableUpdates,
-            PATH(Enum<PreReleases>, preReleases))
+            PATH(Enum<PreReleases>, includePrereleases))
    {
       return createResponse(Status::CODE_200, "OK");
    }
@@ -117,7 +117,7 @@ public:
       return createResponse(Status::CODE_200, "OK");
    }
 
-   ENDPOINT_INFO(updatePlugin)
+   ENDPOINT_INFO(updatePluginVersion)
    {
       info->addTag("Update");
       info->summary = "Update a plugin";
@@ -128,7 +128,7 @@ public:
          );
    }
 
-   ENDPOINT("POST", "/update/plugin/update/{pluginName}", updatePlugin, PATH(String, pluginName),
+   ENDPOINT("POST", "/update/plugin/update/{pluginName}", updatePluginVersion, PATH(String, pluginName),
       BODY_DTO(Object<DownloadUrl>, downloadUrl))
    {
       return createResponse(Status::CODE_200, "OK");
