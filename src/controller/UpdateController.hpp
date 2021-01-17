@@ -44,6 +44,21 @@ public:
    {
       return createResponse(Status::CODE_200, "OK");
    }
+
+   ENDPOINT_INFO(updateYadoms)
+   {
+      info->addTag("Update");
+      info->summary = "Update yadoms";
+      info->description = "Update yadoms";
+      info->addResponse<Object<TaskIdResponse>>(
+         Status::CODE_200,
+         "application/json"
+         );
+   }
+   ENDPOINT("POST", "/update/yadoms/update", updateYadoms, BODY_DTO(Object<DownloadUrl>, downloadUrl))
+   {
+      return createResponse(Status::CODE_200, "OK");
+   }
 };
 #include OATPP_CODEGEN_END(ApiController)
 #endif /* UpdateController_hpp */
