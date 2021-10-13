@@ -5,7 +5,6 @@ MD build
 cd build/
 cmake ..
 cmake --build . --target INSTALL
-cmake --build . --target INSTALL --config Release
 
 cd ../..
 git clone https://github.com/oatpp/oatpp-swagger
@@ -15,4 +14,3 @@ MD build
 cd build/
 cmake ..
 cmake --build . --target INSTALL
-cmake --build . --target INSTALL --config Release
