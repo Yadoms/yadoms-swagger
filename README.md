@@ -1,4 +1,4 @@
-# yadoms-swagger-spot
+# yadoms-swagger
 
 Yadoms server Swagger page
 
