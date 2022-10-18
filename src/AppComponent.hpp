@@ -79,9 +79,7 @@ public:
       swaggerResources
    )([]
       {
-         return oatpp::swagger::Resources::loadResources(
-            OATPP_SWAGGER_RES_PATH
-         );
+         return oatpp::swagger::Resources::loadResources("res");
       }());
 };
 

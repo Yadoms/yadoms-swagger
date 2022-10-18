@@ -1,7 +1,7 @@
 ﻿#ifndef CAcquisitionController_hpp
 #define CAcquisitionController_hpp
 
-#include "oatpp/web/server/api/ApiController.hpp"
+#include <oatpp/web/server/api/ApiController.hpp>
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/macro/component.hpp"
 #include "dto/acquisition/KeywordsLastDataResponseDTO.hpp"

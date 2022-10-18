@@ -6,13 +6,14 @@
 #include "dto/recipient/RecipientFieldDataDTO.hpp"
 #include OATPP_CODEGEN_BEGIN(DTO)
 
+
 class RecipientData : public oatpp::DTO
 {
-   DTO_INIT(RecipientData, DTO);
+	DTO_INIT(RecipientData, DTO);
    DTO_FIELD(Int32, id) = 0;
    DTO_FIELD(String, firstName) = "";
    DTO_FIELD(String, lastName) = "";
-   DTO_FIELD(Vector<Object<RecipientFieldData>>, fields) = { {Vector<Object<RecipientFieldData>>({RecipientFieldData::createShared()})} };
+   DTO_FIELD(Vector<Object<RecipientFieldData>>, fields)={Object<RecipientFieldData>()};
 
 };
 

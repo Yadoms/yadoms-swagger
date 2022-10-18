@@ -19,92 +19,48 @@
 
 void run()
 {
-   /* Register Components in scope of run() method */
-   AppComponent components;
+	/* Register Components in scope of run() method */
+	AppComponent components;
 
-   /* Get router component */
-   OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router);
+	/* Get router component */
+	OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router);
 
-   /* Create Controllers and add all of its endpoints to router */
-   // You can copy emptyController
-   //auto emptyController = std::make_shared<CEmptyController>();
-   //emptyController->addEndpointsToRouter(router);
-   auto acquisitionController = std::make_shared<CAcquisitionController>();
-   acquisitionController->addEndpointsToRouter(router);
 
-   auto automationController = std::make_shared<CAutomationController>();
-   automationController->addEndpointsToRouter(router);
+	oatpp::web::server::api::Endpoints docEndpoints;
+	/* Create Controllers and add all of its endpoints to router */
+	// You can copy emptyController
+	//auto emptyController = std::make_shared<CEmptyController>();
+	//emptyController->addEndpointsToRouter(router);
+	docEndpoints.append(router->addController(std::make_shared<CAcquisitionController>())->getEndpoints());
+	docEndpoints.append(router->addController(std::make_shared<CConfigurationController>())->getEndpoints());
+	docEndpoints.append(router->addController(std::make_shared<CDeviceController>())->getEndpoints());
+	docEndpoints.append(router->addController(std::make_shared<CEventLoggerController>())->getEndpoints());
+	docEndpoints.append(router->addController(std::make_shared<CPageController>())->getEndpoints());
+	docEndpoints.append(router->addController(std::make_shared<CWidgetController>())->getEndpoints());
+	docEndpoints.append(router->addController(std::make_shared<CPluginController>())->getEndpoints());
+	docEndpoints.append(router->addController(std::make_shared<CPluginEventLoggerController>())->getEndpoints());
+	docEndpoints.append(router->addController(std::make_shared<CRecipientController>())->getEndpoints());
+	docEndpoints.append(router->addController(std::make_shared<CSystemController>())->getEndpoints());
+	docEndpoints.append(router->addController(std::make_shared<CTaskController>())->getEndpoints());
+	docEndpoints.append(router->addController(std::make_shared<CUpdateController>())->getEndpoints());
 
-   auto configurationController = std::make_shared<CConfigurationController>();
-   configurationController->addEndpointsToRouter(router);
 
-   auto deviceController = std::make_shared<CDeviceController>();
-   deviceController->addEndpointsToRouter(router);
+	/* Get connection handler component */
+	OATPP_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, connectionHandler);
 
-   auto eventLoggerController = std::make_shared<CEventLoggerController>();
-   eventLoggerController->addEndpointsToRouter(router);
+	/* Get connection provider component */
+	OATPP_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, connectionProvider);
 
-   auto maintenanceController = std::make_shared<CMaintenanceController>();
-   maintenanceController->addEndpointsToRouter(router);
+	router->addController(oatpp::swagger::Controller::createShared(docEndpoints));
 
-   auto pageController = std::make_shared<CPageController>();
-   pageController->addEndpointsToRouter(router);
+	/* Create server which takes provided TCP connections and passes them to HTTP connection handler */
+	oatpp::network::Server server(connectionProvider, connectionHandler);
 
-   auto widgetController = std::make_shared<CWidgetController>();
-   widgetController->addEndpointsToRouter(router);
+	/* Priny info about server port */
+	OATPP_LOGI("Yadoms ", "Server running on port %s", connectionProvider->getProperty("port").getData());
 
-   auto pluginController = std::make_shared<CPluginController>();
-   pluginController->addEndpointsToRouter(router);
-
-   auto pluginEventLoggerController = std::make_shared<CPluginEventLoggerController>();
-   pluginEventLoggerController->addEndpointsToRouter(router);
-
-   auto recipientController = std::make_shared<CRecipientController>();
-   recipientController->addEndpointsToRouter(router);
-
-   auto systemController = std::make_shared<CSystemController>();
-   systemController->addEndpointsToRouter(router);
-
-   auto taskController = std::make_shared<CTaskController>();
-   taskController->addEndpointsToRouter(router);
-
-   auto updateController = std::make_shared<CUpdateController>();
-   updateController->addEndpointsToRouter(router);
-   
-   /* Get connection handler component */
-   OATPP_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, connectionHandler);
-
-   /* Get connection provider component */
-   OATPP_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, connectionProvider);
-
-   auto docEndpoints = oatpp::swagger::Controller::Endpoints::createShared();
-   //docEndpoints->pushBackAll(emptyController->getEndpoints());
-   docEndpoints->pushBackAll(acquisitionController->getEndpoints());
-   docEndpoints->pushBackAll(automationController->getEndpoints());
-   docEndpoints->pushBackAll(configurationController->getEndpoints());
-   docEndpoints->pushBackAll(deviceController->getEndpoints());
-   docEndpoints->pushBackAll(eventLoggerController->getEndpoints());
-   docEndpoints->pushBackAll(maintenanceController->getEndpoints());
-   docEndpoints->pushBackAll(pageController->getEndpoints());
-   docEndpoints->pushBackAll(widgetController->getEndpoints());
-   docEndpoints->pushBackAll(pluginController->getEndpoints());
-   docEndpoints->pushBackAll(pluginEventLoggerController->getEndpoints());
-   docEndpoints->pushBackAll(recipientController->getEndpoints());
-   docEndpoints->pushBackAll(systemController->getEndpoints());
-   docEndpoints->pushBackAll(taskController->getEndpoints());
-   docEndpoints->pushBackAll(updateController->getEndpoints());
-
-   auto swaggerController = oatpp::swagger::Controller::createShared(docEndpoints);
-   swaggerController->addEndpointsToRouter(router);
-
-   /* Create server which takes provided TCP connections and passes them to HTTP connection handler */
-   oatpp::network::Server server(connectionProvider, connectionHandler);
-
-   /* Priny info about server port */
-   OATPP_LOGI("Yadoms ", "Server running on port %s", connectionProvider->getProperty("port").getData());
-
-   /* Run server */
-   server.run();
+	/* Run server */
+	server.run();
 }
 
 /**
@@ -112,17 +68,17 @@ void run()
  */
 int main(int argc, const char* argv[])
 {
-   oatpp::base::Environment::init();
+	oatpp::base::Environment::init();
 
-   run();
+	run();
 
-   /* Print how much objects were created during app running, and what have left-probably leaked */
-   /* Disable object counting for release builds using '-D OATPP_DISABLE_ENV_OBJECT_COUNTERS' flag for better performance */
-   std::cout << "\nEnvironment:\n";
-   std::cout << "objectsCount = " << oatpp::base::Environment::getObjectsCount() << "\n";
-   std::cout << "objectsCreated = " << oatpp::base::Environment::getObjectsCreated() << "\n\n";
+	/* Print how much objects were created during app running, and what have left-probably leaked */
+	/* Disable object counting for release builds using '-D OATPP_DISABLE_ENV_OBJECT_COUNTERS' flag for better performance */
+	std::cout << "\nEnvironment:\n";
+	std::cout << "objectsCount = " << oatpp::base::Environment::getObjectsCount() << "\n";
+	std::cout << "objectsCreated = " << oatpp::base::Environment::getObjectsCreated() << "\n\n";
 
-   oatpp::base::Environment::destroy();
+	oatpp::base::Environment::destroy();
 
-   return 0;
+	return 0;
 }
